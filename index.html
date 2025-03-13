@@ -6,14 +6,104 @@
     <title>Personal Website</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/css/uikit.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            font-family: 'Big Shoulders Inline'!important;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        a, p, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Big Shoulders Inline'!important;
+        }
+
+        .uk-navbar {
+            background-color: black;
+    border-radius: 0px;
+    height: 40px;
+    overflow-x: auto;
+        }
+
+        .uk-navbar .uk-logo {
+            color: white;
+    font-size: 1.5rem;
+    text-shadow: 5px 5px 0px gray;
+    font-weight: 900;
+    min-height: auto;
+    line-height: 40px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+        }
+
+        .uk-navbar-nav>li>a {
+            color: black;
+    font-size: 1.25rem;
+    min-height: auto;
+    line-height: 40px;
+    white-space: nowrap;
+        }
+
+        .uk-navbar li {
+            background-color: white;
+    margin: 0.5rem;
+    border-radius: 1rem 1rem 0px 0px;
+    margin-left: 0px;
+    margin-bottom: -0.5rem;
+        }
+
+        .uk-navbar li:last-child {
+            border-radius: 1rem 0px 0px 0px;
+            margin-right: 0px;
+        }
+
+        .uk-navbar a i {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+    </style>
 </head>
 <body>
 
-    <header class="uk-background-primary uk-light uk-padding">
-        <div class="uk-container">
-            <h1 class="uk-heading-medium">Welcome to My Personal Website</h1>
-        </div>
-    </header>
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="#">CHAN RAIN</a>
+            </div>
+            <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+
+                    <li>
+                    <a href="#about" >
+                    <i class="ri-user-fill"></i>
+                    About Me
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="#projects" >
+                    <i class="ri-pencil-ruler-2-fill"></i>
+                    Projects
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="#contact" >
+                    <i class="ri-chat-1-fill"></i>
+                    Contact
+                    </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
 
     <section class="uk-section uk-section-default">
         <div class="uk-container">
