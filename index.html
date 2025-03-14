@@ -324,6 +324,7 @@
     background-color: gray;
     border-radius: 0px;
     filter: grayscale(1) brightness(100%) contrast(125%);
+    display:none;
     }
 
     </style>
@@ -415,22 +416,6 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
 
     <script>
-        function swapTabs(tabName) {
-            // Get all navbar items
-            var tabs = document.querySelectorAll('.uk-navbar-nav li');
-
-            // Remove 'active' class from all tabs
-            tabs.forEach(function (tab) {
-                tab.classList.remove('active');
-            });
-
-            // Find the clicked tab and add 'active' class
-            tabs.forEach(function (tab) {
-                if (tab.querySelector('a').getAttribute('onclick').includes(tabName)) {
-                    tab.classList.add('active');
-                }
-            });
-        }
 
         function postProject(title, description, buttonText, buttonIcon, buttonAction, imageUrl) {
             const contentDiv = document.querySelector('.content');
@@ -562,6 +547,11 @@
                 "",
                 "assets/images/pfp.jpg"
             );
+
+            document.getElementById('backgroundImage').style.display = "block";
+
+        } else {
+            document.getElementById('backgroundImage').style.display = "none";
         }
     }
 
