@@ -212,14 +212,16 @@
 
         .project-listing hr {
             margin-top: -0.25rem;
-            margin-bottom: 0.75rem;
-            border: 1px solid black;
+    margin-bottom: 0.75rem;
+    border: 1px solid gray;
+    width: 50%;
+    border-radius: 100vmin;
         }
 
         .project-content .music-button {
             display: inline-flex;
             width: fit-content;
-            padding: 0px 1rem;
+            padding: 0px 0.75rem;
             white-space: nowrap;
             margin: 0.25rem;
         }
@@ -351,6 +353,7 @@
             <div class="project-listing">
                 <div class="project-content">
                     <h2>${title}</h2>
+                    <hr>
                     <p>${description}</p>
                     <button class="uk-button" onclick="window.open('${buttonAction}')">
                         <i class="${buttonIcon}"></i>
@@ -366,6 +369,7 @@
                         <div class="project-listing">
                 <div class="project-content">
                     <h2>${title}</h2>
+                    <hr>
                     <p>${description}</p>
                     <div>
                     <button style = "background-color:#1DB954" class="uk-button music-button"
