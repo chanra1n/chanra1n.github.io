@@ -103,7 +103,7 @@
         /* Sidebar */
         .sidebar {
             width: min-content;
-            background-color: #222;
+            background-color: black;
             color: white;
             overflow-y: auto;
         }
@@ -152,6 +152,10 @@
             margin-bottom: 0.5rem;
         }
 
+
+        #projects-tab h1 {
+            font-size:1.5rem;
+        }
 
         .project-listing {
             border: 2.5px solid black;
@@ -280,16 +284,16 @@
                         <i class="ri-instagram-fill"></i>
                     </a></li>
 
+                    <li><a href="https://github.com/chanra1n" target="_blank">
+                        <i class="ri-github-fill"></i>
+                    </a></li>
+
                 <li><a href="https://discordapp.com/users/750845810396364900" target="_blank">
                         <i class="ri-discord-fill"></i>
                     </a></li>
 
                 <li><a href="https://steamcommunity.com/id/chanrain" target="_blank">
                         <i class="ri-steam-fill"></i>
-                    </a></li>
-
-                <li><a href="https://github.com/chanra1n" target="_blank">
-                        <i class="ri-github-fill"></i>
                     </a></li>
 
                 <li><a href="https://linkedin.com/in/chanmrotzek" target="_blank">
@@ -398,7 +402,42 @@
             contentDiv.innerHTML += projectHTML;
         }
 
-        window.onload = function () {
+    // Object to store tab contents
+    const tabContent = {
+        "projects": `
+            <div id="projects-tab">
+            </div>
+        `,
+        "about": `
+            <div id="about-tab">
+                <h1>About Me</h1>
+                <p>This is the about me section. Here you can add details about yourself.</p>
+            </div>
+        `,
+        "contact": `
+            <div id="contact-tab">
+                <h1>Contact</h1>
+                <p>Feel free to reach out via the social links provided.</p>
+            </div>
+        `
+    };
+
+    function swapTabs(tabName) {
+        // Get all navbar items and remove 'active' class
+        document.querySelectorAll('.uk-navbar-nav li').forEach(tab => tab.classList.remove('active'));
+
+        // Set active tab
+        document.querySelectorAll('.uk-navbar-nav li').forEach(tab => {
+            if (tab.querySelector('a').getAttribute('onclick').includes(tabName)) {
+                tab.classList.add('active');
+            }
+        });
+
+        // Swap content
+        document.querySelector('.content').innerHTML = tabContent[tabName];
+
+        // Add projects if it's the projects tab
+        if (tabName === "projects") {
             postProject(
                 "SCAM CENTER TYCOON",
                 "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
@@ -414,10 +453,15 @@
                 "ri-music-2-fill",
                 "",
                 "assets/images/pfp.jpg"
-            )
+            );
         }
+    }
 
-    </script>
+    // Set default tab on page load
+    window.onload = function () {
+        swapTabs('projects');
+    };
+</script>
 
 
 </body>
