@@ -502,9 +502,6 @@
                         Hoping to make a career out of any one thing you see on this website... or all of them. I'm not picky! 
                     </p>
                 </div>
-                <div class="about-image-grid">
-                    <img src="assets/images/pics/2.jpg" alt="Profile Picture" />
-                </div>
             </div>
         `,
         "contact": `
@@ -550,6 +547,8 @@
 
             document.getElementById('backgroundImage').style.display = "block";
 
+        } else if (tabName === "about") {
+            document.getElementById('backgroundImage').style.display = "block";
         } else {
             document.getElementById('backgroundImage').style.display = "none";
         }
