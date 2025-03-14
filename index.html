@@ -90,10 +90,9 @@
 
         /* Sidebar */
         .sidebar {
-            width: 12.5%; /* 1/8 of the screen */
+            width: min-content;
             background-color: #222;
             color: white;
-            padding: 20px;
             overflow-y: auto;
         }
 
@@ -103,27 +102,97 @@
         }
 
         .sidebar ul li {
-            padding: 10px 0;
+            padding: 0.5rem;
+    background-color: white;
+    margin: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0px 0.5rem;
+    color: black;
+    line-height: normal;
+    width: fit-content;
+    margin-right: 0.75rem;
         }
 
         .sidebar ul li a {
-            color: white;
+            color: black;
             text-decoration: none;
             display: block;
-            padding: 5px;
-        }
-
-        .sidebar ul li a:hover {
-            background: gray;
-            border-radius: 5px;
+            font-weight:100;
+            font-size:1.25rem;
         }
 
         /* Main Content */
         .content {
-            width: 87.5%; /* 7/8 of the screen */
-            padding: 20px;
-            overflow-y: auto;
+            width: 100%;
+    padding: 1rem;
+    overflow-y: auto;
         }
+
+        .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+            font-weight: 900;
+    font-size: 2rem;
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+        }
+
+
+        .project-listing {
+    border: 2.5px solid black;
+    padding: 1rem;
+    box-shadow: 10px 10px 0px black;
+    width: 60%;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Ensures both sides stretch equally */
+    position:relative;
+    margin-bottom: 1.5rem;
+}
+
+.project-listing h1 {
+    font-size: 1.75rem;
+}
+
+.project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-content button {
+    background-color: black;
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    font-family: 'Big Shoulders Inline';
+    border-radius: 1rem 1rem 1rem 0px;
+}
+
+.project-listing img {
+    flex: 0 0 50%;
+    max-width: 10rem;
+    height: 100%;
+    object-fit: cover;
+    margin-left: 1rem;
+    border-radius: 1rem 1rem 0px 1rem;
+}
+
+.project-listing p {
+    margin-top:0px;
+    margin-bottom:0.75rem;
+}
+
+.project-listing button i {
+    margin-right:7.5px;
+}
+
+.project-listing hr {
+    margin-top:-0.25rem;
+    margin-bottom:0.75rem;
+    border:1px solid black;
+}
+
     </style>
 </head>
 <body>
@@ -175,15 +244,11 @@
                 <i class="ri-gamepad-fill"></i>
                 </a></li>
                 
-                <li><a href="#">Item 4</a></li>
             </ul>
         </div>
 
         <div class="content">
-            <div class="uk-card uk-card-default uk-card-body">
-                <h3 class="uk-card-title">Projects</h3>
-                <p>Here are a few of the projects I've worked on recently. Click on the links to learn more about each project.</p>
-            </div>
+
         </div>
     </div>
 
@@ -213,7 +278,60 @@
                 }
             });
         }
+
+    function postProject(title, description, buttonText, buttonIcon, imageUrl) {
+        const contentDiv = document.querySelector('.content');
+
+        const projectHTML = `
+            <div class="project-listing">
+                <div class="project-content">
+                    <h2>${title}</h2>
+                    <p>${description}</p>
+                    <button class="uk-button">
+                        <i class="${buttonIcon}"></i>
+                        ${buttonText}
+                    </button>
+                </div>
+                <img src="${imageUrl}" alt="Project Image">
+            </div>
+        `;
+
+        contentDiv.innerHTML += projectHTML;
+    }
+
+    window.onload = function() {
+        postProject(
+        "SCAM CENTER TYCOON",
+        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
+        "PLAY NOW",
+        "ri-gamepad-fill",
+        "assets/images/sct.png"
+    );
+    postProject(
+        "SCAM CENTER TYCOON",
+        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
+        "PLAY NOW",
+        "ri-gamepad-fill",
+        "assets/images/sct.png"
+    );
+    postProject(
+        "SCAM CENTER TYCOON",
+        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
+        "PLAY NOW",
+        "ri-gamepad-fill",
+        "assets/images/sct.png"
+    );
+    postProject(
+        "SCAM CENTER TYCOON",
+        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
+        "PLAY NOW",
+        "ri-gamepad-fill",
+        "assets/images/sct.png"
+    );
+    }
+
     </script>
+
 
 </body>
 </html>
