@@ -271,7 +271,7 @@
     align-items: stretch;
     overflow: hidden;
     margin: 0.25rem;
-    border-radius: 1.5rem 1.5rem 0px 1.5rem;
+    border-radius: 1rem 1rem 0px 1rem;
     margin-left: 0.5rem;
 }
 
@@ -281,6 +281,8 @@
     object-fit: cover;
     border-radius: 0px;
     object-position: top;
+    opacity: 75%;
+    mix-blend-mode: multiply;
 }
 
 @media (max-width: 48rem) {
@@ -291,15 +293,6 @@
 
         .about-text {
             max-width: 100%;
-        }
-
-        .about-image-grid {
-            max-width: 100%;
-            max-height: 50vh;
-        }
-
-        .about-image-grid img {
-            border-radius: 0.5rem;
         }
 
         .about-image-grid {
@@ -314,21 +307,6 @@
     margin-top: 0.5rem;
     box-shadow: 10px 10px 0px black;
     color: black;
-    }
-
-    #backgroundImage {
-        position: absolute;
-    top: 2.5rem;
-    height: -webkit-fill-available;
-    right: 0;
-    opacity: 5%;
-    width: 100%;
-    object-fit: cover;
-    object-position: 22.5rem -10rem;
-    filter: brightness(2) contrast(250%) blur(1px);
-    background-color: gray;
-    margin: 1rem;
-    border-radius: 2.5rem;
     }
 
     </style>
