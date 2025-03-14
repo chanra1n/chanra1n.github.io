@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Restore Navbar Styling Exactly */
-        body, html {
-            font-family: 'Big Shoulders Inline'!important;
+        body,
+        html {
+            font-family: 'Big Shoulders Inline' !important;
             overflow: hidden;
             width: 100%;
             height: 100%;
@@ -21,8 +24,15 @@
             padding: 0;
         }
 
-        a, p, h1, h2, h3, h4, h5, h6 {
-            font-family: 'Big Shoulders Inline'!important;
+        a,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Big Shoulders Inline' !important;
         }
 
         .uk-navbar {
@@ -45,7 +55,7 @@
             left: 0;
         }
 
-        .uk-navbar-nav > li > a {
+        .uk-navbar-nav>li>a {
             color: black;
             font-size: 1.25rem;
             min-height: auto;
@@ -55,12 +65,12 @@
 
         .uk-navbar li {
             background-color: white;
-    margin: 0.5rem;
-    border-radius: 0.5rem 0.5rem 0px 0px;
-    margin-left: 0px;
-    margin-bottom: 0rem;
-    color: white;
-    opacity: 0.5;
+            margin: 0.5rem;
+            border-radius: 0.5rem 0.5rem 0px 0px;
+            margin-left: 0px;
+            margin-bottom: 0rem;
+            color: white;
+            opacity: 0.5;
         }
 
         .uk-navbar li.active {
@@ -84,7 +94,8 @@
         /* FIX: Body Layout Below Navbar */
         .main-container {
             display: flex;
-            height: calc(100vh - 40px); /* Full height minus navbar */
+            height: calc(100vh - 40px);
+            /* Full height minus navbar */
             width: 100%;
         }
 
@@ -103,105 +114,112 @@
 
         .sidebar ul li {
             padding: 0.5rem;
-    background-color: white;
-    margin: 0.5rem;
-    border-radius: 0.5rem 0.5rem 0px 0.5rem;
-    color: black;
-    line-height: normal;
-    width: fit-content;
-    margin-right: 0.75rem;
+            background-color: white;
+            margin: 0.5rem;
+            border-radius: 0.5rem 0.5rem 0px 0.5rem;
+            color: black;
+            line-height: normal;
+            width: fit-content;
+            margin-right: 0.75rem;
         }
 
         .sidebar ul li a {
             color: black;
             text-decoration: none;
             display: block;
-            font-weight:100;
-            font-size:1.25rem;
+            font-weight: 100;
+            font-size: 1.25rem;
         }
 
         /* Main Content */
         .content {
             width: 100%;
-    padding: 1rem;
-    overflow-y: auto;
+            padding: 1rem;
+            overflow-y: auto;
         }
 
-        .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+        .content h1,
+        .content h2,
+        .content h3,
+        .content h4,
+        .content h5,
+        .content h6 {
             font-weight: 900;
-    font-size: 2rem;
-    color: black;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: black;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
 
         .project-listing {
-    border: 2.5px solid black;
-    padding: 1rem;
-    box-shadow: 10px 10px 0px black;
-    width: 60%;
-    margin: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* Ensures both sides stretch equally */
-    position:relative;
-    margin-bottom: 1.5rem;
-}
+            border: 2.5px solid black;
+            padding: 1rem;
+            box-shadow: 10px 10px 0px black;
+            width: 40rem;
+            margin: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            /* Ensures both sides stretch equally */
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
 
-.project-listing h1 {
-    font-size: 1.75rem;
-}
+        .project-listing h1 {
+            font-size: 1.75rem;
+        }
 
-.project-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .project-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.project-content button {
-    background-color: black;
-    color: white;
-    font-size: 1.25rem;
-    padding: 0.25rem;
-    font-family: 'Big Shoulders Inline';
-    border-radius: 1rem 1rem 1rem 0px;
-}
+        .project-content button {
+            background-color: black;
+            color: white;
+            font-size: 1.25rem;
+            padding: 0.25rem;
+            font-family: 'Big Shoulders Inline';
+            border-radius: 1rem 1rem 1rem 0px;
+        }
 
-.project-listing img {
-    flex: 0 0 50%;
-    max-width: 10rem;
-    height: 100%;
-    object-fit: cover;
-    margin-left: 1rem;
-    border-radius: 1rem 1rem 0px 1rem;
-}
+        .project-listing img {
+            flex: 0 0 50%;
+            max-width: 10rem;
+            height: 100%;
+            object-fit: cover;
+            margin-left: 1rem;
+            border-radius: 1rem 1rem 0px 1rem;
+        }
 
-.project-listing p {
-    margin-top:0px;
-    margin-bottom:0.75rem;
-}
+        .project-listing p {
+            margin-top: 0px;
+            margin-bottom: 0.75rem;
+        }
 
-.project-listing button i {
-    margin-right:7.5px;
-}
+        .project-listing button i {
+            margin-right: 7.5px;
+        }
 
-.project-listing hr {
-    margin-top:-0.25rem;
-    margin-bottom:0.75rem;
-    border:1px solid black;
-}
+        .project-listing hr {
+            margin-top: -0.25rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid black;
+        }
 
-.project-content .music-button {
-    display: inline-flex;
-    width: fit-content;
-    padding: 0px 1rem;
-    white-space: nowrap;
-    margin: 0.25rem;
-}
+        .project-content .music-button {
+            display: inline-flex;
+            width: fit-content;
+            padding: 0px 1rem;
+            white-space: nowrap;
+            margin: 0.25rem;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
@@ -210,22 +228,22 @@
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-                <li class = "active">
-                    <a onclick = "swapTabs('projects')">
+                <li class="active">
+                    <a onclick="swapTabs('projects')">
                         <i class="ri-pencil-ruler-2-fill"></i>
                         Projects
                     </a>
                 </li>
 
                 <li>
-                    <a onclick = "swapTabs('about')">
+                    <a onclick="swapTabs('about')">
                         <i class="ri-user-fill"></i>
                         About Me
                     </a>
                 </li>
 
                 <li>
-                    <a onclick = "swapTabs('contact')">
+                    <a onclick="swapTabs('contact')">
                         <i class="ri-chat-1-fill"></i>
                         Contact
                     </a>
@@ -239,18 +257,34 @@
         <div class="sidebar">
             <ul>
 
-                <li><a href="#">
-                <i class="ri-terminal-box-fill"></i>
-                </a></li>
+                <li><a href="https://instagram.com/_chanrain" target="_blank">
+                        <i class="ri-instagram-fill"></i>
+                    </a></li>
 
-                <li><a href="#">
-                <i class="ri-music-2-fill"></i>
-                </a></li>
+                <li><a href="https://discordapp.com/users/750845810396364900" target="_blank">
+                        <i class="ri-discord-fill"></i>
+                    </a></li>
 
-                <li><a href="#">
-                <i class="ri-gamepad-fill"></i>
-                </a></li>
+                <li><a href="https://steamcommunity.com/id/chanrain" target="_blank">
+                        <i class="ri-steam-fill"></i>
+                    </a></li>
+
+                <li><a href="https://github.com/chanra1n" target="_blank">
+                        <i class="ri-github-fill"></i>
+                    </a></li>
+
+                <li><a href="https://linkedin.com/in/chanmrotzek" target="_blank">
+                        <i class="ri-linkedin-fill"></i>
+                    </a></li>
+
+                <li><a href="https://www.tumblr.com/chanrain" target="_blank">
+                        <i class="ri-tumblr-fill"></i>
+                    </a></li>
                 
+                <li><a href="https://youtube.com/@chanra1n" target="_blank">
+                        <i class="ri-youtube-fill"></i>
+                    </a></li>
+
             </ul>
         </div>
 
@@ -272,29 +306,29 @@
         function swapTabs(tabName) {
             // Get all navbar items
             var tabs = document.querySelectorAll('.uk-navbar-nav li');
-    
+
             // Remove 'active' class from all tabs
-            tabs.forEach(function(tab) {
+            tabs.forEach(function (tab) {
                 tab.classList.remove('active');
             });
-    
+
             // Find the clicked tab and add 'active' class
-            tabs.forEach(function(tab) {
+            tabs.forEach(function (tab) {
                 if (tab.querySelector('a').getAttribute('onclick').includes(tabName)) {
                     tab.classList.add('active');
                 }
             });
         }
 
-    function postProject(title, description, buttonText, buttonIcon, imageUrl) {
-        const contentDiv = document.querySelector('.content');
+        function postProject(title, description, buttonText, buttonIcon, buttonAction, imageUrl) {
+            const contentDiv = document.querySelector('.content');
 
-        var projectHTML = `
+            var projectHTML = `
             <div class="project-listing">
                 <div class="project-content">
                     <h2>${title}</h2>
                     <p>${description}</p>
-                    <button class="uk-button">
+                    <button class="uk-button" onclick="window.open('${buttonAction}')">
                         <i class="${buttonIcon}"></i>
                         ${buttonText}
                     </button>
@@ -303,8 +337,8 @@
             </div>
         `;
 
-        if (buttonIcon === "ri-music-2-fill") {
-            projectHTML = `
+            if (buttonIcon === "ri-music-2-fill") {
+                projectHTML = `
                         <div class="project-listing">
                 <div class="project-content">
                     <h2>${title}</h2>
@@ -340,30 +374,33 @@
                 <img src="${imageUrl}" alt="Project Image">
             </div>
             `;
+            }
+
+            contentDiv.innerHTML += projectHTML;
         }
 
-        contentDiv.innerHTML += projectHTML;
-    }
-
-    window.onload = function() {
-        postProject(
-        "SCAM CENTER TYCOON",
-        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
-        "PLAY NOW",
-        "ri-gamepad-fill",
-        "assets/images/sct.png"
-    );
-        postProject(
-        "My Music",
-        "Available on most platforms. Usually, when I compose music for games, I release the soundtrack as an album, along with any bonus tracks that didn't make the cut.",
-        "LISTEN NOW",
-        "ri-music-2-fill",
-        "assets/images/pfp.jpg"
-        )
-    }
+        window.onload = function () {
+            postProject(
+                "SCAM CENTER TYCOON",
+                "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
+                "PLAY NOW",
+                "ri-gamepad-fill",
+                "https://scamcentertycoon.com",
+                "assets/images/sct.png"
+            );
+            postProject(
+                "My Music",
+                "Available on most platforms. Usually, when I compose music for games, I release the soundtrack as an album, along with any bonus tracks that didn't make the cut.",
+                "LISTEN NOW",
+                "ri-music-2-fill",
+                "",
+                "assets/images/pfp.jpg"
+            )
+        }
 
     </script>
 
 
 </body>
+
 </html>
