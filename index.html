@@ -56,7 +56,7 @@
         .uk-navbar li {
             background-color: white;
     margin: 0.5rem;
-    border-radius: 1rem 1rem 0px 0px;
+    border-radius: 0.5rem 0.5rem 0px 0px;
     margin-left: 0px;
     margin-bottom: 0rem;
     color: white;
@@ -72,7 +72,7 @@
         }
 
         .uk-navbar li:last-child {
-            border-radius: 1rem 0px 0px 0px;
+            border-radius: 0.5rem 0px 0px 0px;
             margin-right: 0px;
         }
 
@@ -193,6 +193,13 @@
     border:1px solid black;
 }
 
+.project-content .music-button {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0px 1rem;
+    white-space: nowrap;
+    margin: 0.25rem;
+}
     </style>
 </head>
 <body>
@@ -282,7 +289,7 @@
     function postProject(title, description, buttonText, buttonIcon, imageUrl) {
         const contentDiv = document.querySelector('.content');
 
-        const projectHTML = `
+        var projectHTML = `
             <div class="project-listing">
                 <div class="project-content">
                     <h2>${title}</h2>
@@ -296,6 +303,45 @@
             </div>
         `;
 
+        if (buttonIcon === "ri-music-2-fill") {
+            projectHTML = `
+                        <div class="project-listing">
+                <div class="project-content">
+                    <h2>${title}</h2>
+                    <p>${description}</p>
+                    <div>
+                    <button style = "background-color:#1DB954" class="uk-button music-button"
+                    onclick = "window.open('https://open.spotify.com/artist/2ilmWHp65ySfupUOPyKRrt?si=s7jxlVawTZOjnGWa9AbYFg')">
+                        <i class="ri-spotify-fill"></i>
+                        Spotify
+                    </button>
+                    <button style = "background-color:#FA2D48" class="uk-button music-button"
+                    onclick = "window.open('https://music.apple.com/us/artist/chan-rain/1725368167')">
+                        <i class="ri-apple-fill"></i>
+                        Apple Music
+                    </button>
+                    <button style = "background-color:#EA4CC0" class="uk-button music-button"
+                    onclick = "window.open('https://music.apple.com/us/artist/chan-rain/1725368167')">
+                        <i class="ri-apple-fill"></i>
+                        iTunes
+                    </button>
+                    <button style = "background-color:#25d1da" class="uk-button music-button"
+                    onclick = "window.open('https://music.amazon.com/artists/B0CS4V5HJB/chan-rain?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_42rPW9ugbJj8dTTJ9uae3DchA')">
+                        <i class="ri-amazon-fill"></i>
+                        Amazon Music
+                    </button>
+                    <button style = "background-color:#FF0000" class="uk-button music-button"
+                    onclick = "window.open('https://music.youtube.com/channel/UCaywisLAnj_EkEi7QH-Jk-Q?si=DVrF2pu-rDoOdiDp')">
+                        <i class="ri-youtube-fill"></i>
+                        YouTube Music
+                    </button>
+                    </div>
+                </div>
+                <img src="${imageUrl}" alt="Project Image">
+            </div>
+            `;
+        }
+
         contentDiv.innerHTML += projectHTML;
     }
 
@@ -307,27 +353,13 @@
         "ri-gamepad-fill",
         "assets/images/sct.png"
     );
-    postProject(
-        "SCAM CENTER TYCOON",
-        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
-        "PLAY NOW",
-        "ri-gamepad-fill",
-        "assets/images/sct.png"
-    );
-    postProject(
-        "SCAM CENTER TYCOON",
-        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
-        "PLAY NOW",
-        "ri-gamepad-fill",
-        "assets/images/sct.png"
-    );
-    postProject(
-        "SCAM CENTER TYCOON",
-        "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
-        "PLAY NOW",
-        "ri-gamepad-fill",
-        "assets/images/sct.png"
-    );
+        postProject(
+        "My Music",
+        "Available on most platforms. Usually, when I compose music for games, I release the soundtrack as an album, along with any bonus tracks that didn't make the cut.",
+        "LISTEN NOW",
+        "ri-music-2-fill",
+        "assets/images/pfp.jpg"
+        )
     }
 
     </script>
