@@ -233,19 +233,62 @@
 
 
 @media (max-width: 48rem) {
-.sidebar {
-    display: none;
-}
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0.5rem 0;
+        z-index: 1000;
+    }
 
-.project-listing img {
-    display: none;
-}
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
 
-.uk-navbar .uk-logo {
-    position: relative;
-    white-space: nowrap;
-}
+    .sidebar ul li {
+        flex: 0 0 auto;
+    margin: 0.25rem 1rem;
+    padding: 0px;
+    background-color: black;
+    border-radius: 0.5rem;
+    color: white;
+    text-align: center;
+    }
 
+    .sidebar ul li a {
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75rem;
+    color: white;
+    }
+
+    .sidebar ul li a i {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .project-listing img {
+        display: none;
+    }
+
+    .uk-navbar .uk-logo {
+        position: relative;
+        white-space: nowrap;
+    }
+
+    .content {
+        padding-bottom: 3rem;
+    }
 }
 
 .about-container {
