@@ -298,6 +298,10 @@
         .about-image-grid {
             display:none!important;
         }
+
+        #backgroundImage {
+            display:none;
+        }
     }
 
     .about-text p {
@@ -314,14 +318,12 @@
     top: 2.5rem;
     height: -webkit-fill-available;
     right: 0;
-    opacity: 20%;
+    opacity: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: 22.5rem -10rem;
-    filter: brightness(2) contrast(250%) blur(1px);
     background-color: gray;
-    margin: 1rem;
-    border-radius: 2.5rem;
+    border-radius: 0px;
+    filter: grayscale(1) brightness(100%) contrast(125%);
     }
 
     </style>
@@ -399,7 +401,7 @@
 
         </div>
 
-        <img id="backgroundImage" src="assets/images/pics/2.jpg" />
+        <img id="backgroundImage" src="assets/images/white.png" />
 
     </div>
 
