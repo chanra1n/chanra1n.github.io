@@ -134,8 +134,18 @@ let particleSystem = null;
 function switchTab(tabName) {
     const current = document.querySelector('.page-content.active');
     const next = document.getElementById(tabName);
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    event.target.closest('.nav-item').classList.add('active');
+
+    // Remove active from all nav-items and nav-links
+    document.querySelectorAll('.nav-item, .nav-link').forEach(item => item.classList.remove('active'));
+
+    // Add active to the clicked nav-item and nav-link
+    const navItem = event.target.closest('.nav-item');
+    if (navItem) {
+        navItem.classList.add('active');
+        const navLink = navItem.querySelector('.nav-link');
+        if (navLink) navLink.classList.add('active');
+    }
+
     if (current && current !== next) {
         current.classList.remove('active');
         current.classList.add('out');
@@ -242,7 +252,7 @@ window.addEventListener('scroll', function () {
             header.classList.remove('scrolled');
         }
     }
-});
+}, {passive: true});
 
 document.addEventListener('click', function (event) {
     const navMenu = document.getElementById('navMenu');
