@@ -211,13 +211,13 @@ nav {
 
 /* Desktop: hover and active states */
 @media (hover: hover) and (pointer: fine) {
-    .nav-item:hover,
-    .nav-link:hover {
+    .nav-item:hover:not(.active),
+    .nav-link:hover:not(.active) {
+        background: rgba(255,255,255,0.18);
         color: #fff;
-        background: rgba(255,255,255,0.25);
         box-shadow: var(--shadow-glass);
         transform: scale(1.05);
-        transition: var(--transition-smooth);
+        z-index: 1;
     }
     .nav-item.active,
     .nav-link.active {
@@ -231,24 +231,17 @@ nav {
 
 /* Mobile/touch: only active state, no hover effect */
 @media (hover: none), (pointer: coarse) {
-    .nav-item:active,
-    .nav-link:active {
-        /* Optional: tap feedback, e.g. slight darken */
+    .nav-item:active:not(.active),
+    .nav-link:active:not(.active) {
         background: rgba(255,255,255,0.18);
         color: #fff;
-    }
-    .nav-item.active,
-    .nav-link.active {
-        color: #fff !important;
-        background: rgba(255,255,255,0.3);
-        box-shadow: var(--shadow-elevated);
-        transform: none;
-        transition: var(--transition-smooth);
+        box-shadow: var(--shadow-glass);
+        /* No transform for tap */
     }
     .nav-item:hover,
     .nav-link:hover {
-        /* Remove hover effect on touch devices */
-        background: var(--glass-bg);
+        /* Prevent hover from sticking on mobile */
+        background: none;
         color: var(--primary-text);
         box-shadow: none;
         transform: none;
@@ -1069,4 +1062,54 @@ nav {
 .page-title span.deciphered,
 .project-info h3 span.deciphered {
     font-family: var(--primary-font-2);
+}
+
+/* NAVIGATION BUTTONS: RESET DEFAULTS */
+.nav-item,
+.nav-link {
+    background: none;
+    color: var(--primary-text);
+    box-shadow: none;
+    transition: var(--transition-smooth);
+}
+
+/* ACTIVE STATE: Only for the current tab */
+.nav-item.active,
+.nav-link.active {
+    background: rgba(255,255,255,0.3);
+    color: #fff !important;
+    box-shadow: var(--shadow-elevated);
+    transform: none;
+    z-index: 1;
+}
+
+/* DESKTOP HOVER FEEDBACK */
+@media (hover: hover) and (pointer: fine) {
+    .nav-item:hover:not(.active),
+    .nav-link:hover:not(.active) {
+        background: rgba(255,255,255,0.18);
+        color: #fff;
+        box-shadow: var(--shadow-glass);
+        transform: scale(1.05);
+        z-index: 1;
+    }
+}
+
+/* MOBILE/TABLET TAP FEEDBACK (NO STICKY HIGHLIGHT) */
+@media (hover: none), (pointer: coarse) {
+    .nav-item:active:not(.active),
+    .nav-link:active:not(.active) {
+        background: rgba(255,255,255,0.18);
+        color: #fff;
+        box-shadow: var(--shadow-glass);
+        /* No transform for tap */
+    }
+    .nav-item:hover,
+    .nav-link:hover {
+        /* Prevent hover from sticking on mobile */
+        background: none;
+        color: var(--primary-text);
+        box-shadow: none;
+        transform: none;
+    }
 }

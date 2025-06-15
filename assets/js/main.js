@@ -131,20 +131,25 @@ class ParticleSystem {
 
 let particleSystem = null;
 
-function switchTab(tabName) {
+function switchTab(tabName, event) {
     const current = document.querySelector('.page-content.active');
     const next = document.getElementById(tabName);
 
     // Remove active from all nav-items and nav-links
-    document.querySelectorAll('.nav-item, .nav-link').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
 
     // Add active to the clicked nav-item and nav-link
-    const navItem = event.target.closest('.nav-item');
-    if (navItem) {
-        navItem.classList.add('active');
-        const navLink = navItem.querySelector('.nav-link');
-        if (navLink) navLink.classList.add('active');
+    let navItem = null, navLink = null;
+    if (event && event.currentTarget) {
+        navLink = event.currentTarget;
+        navItem = navLink.closest('.nav-item');
+    } else if (window.event && window.event.target) {
+        navLink = window.event.target.closest('.nav-link');
+        navItem = navLink ? navLink.closest('.nav-item') : null;
     }
+    if (navItem) navItem.classList.add('active');
+    if (navLink) navLink.classList.add('active');
 
     if (current && current !== next) {
         current.classList.remove('active');
