@@ -340,28 +340,11 @@ document.addEventListener('DOMContentLoaded', function () {
         logo.addEventListener('mouseenter', triggerReDecode);
         logo.addEventListener('focus', triggerReDecode);
     }
-
-    // --- PAGE POP-IN ANIMATION ---
-    // Add .page-pop-animate to all main page elements to hide them initially
-    document.body.classList.add('page-pop-animate');
-    document.querySelectorAll('.header, .main-layout, .floating-particles').forEach(el => {
-        el.classList.add('page-pop-animate');
-    });
-
-    // When everything is ready, pop them in
-    window.requestAnimationFrame(() => {
-        setTimeout(() => {
-            document.body.style.opacity = '1'; // Ensure body is visible
-            document.body.classList.add('page-pop-in');
-            document.querySelectorAll('.header, .main-layout').forEach(el => {
-                el.classList.add('page-pop-in');
-            });
-        }, 60); // slight delay for effect
-    });
 });
 
 // Ensure initial scroll position is at the top after all resources are loaded
 window.addEventListener('load', function () {
+    document.body.style.opacity = '1'; // Ensure body is visible
     window.scrollTo(0, 0);
 });
 

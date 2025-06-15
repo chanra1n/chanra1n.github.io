@@ -52,6 +52,7 @@
             position: relative;
             overflow-y: scroll;
             opacity: 0;
+            transition: all 0.3s ease;
         }
 
         body::before {
@@ -922,7 +923,7 @@ nav {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
-    opacity: 25%!important;
+    opacity: 25%;
     mix-blend-mode: screen;
 }
 .particle {
