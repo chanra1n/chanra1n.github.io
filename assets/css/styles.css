@@ -80,14 +80,22 @@
         .header {
     background: transparent;
     color: var(--primary-text);
-    padding: 0.75rem 0 0 0;
+    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: var(--transition-smooth);
+    transition: var(--transition-smooth), background 0.3s, backdrop-filter 0.3s;
     width: 100%;
 }
 
+
+.header.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+    border-bottom: 1px solid var(--glass-border);
+}
 
 .header-content {
     max-width: 1200px;
@@ -129,7 +137,7 @@ nav {
     background: transparent;
     border-radius: var(--border-radius);
     color: var(--primary-text);
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
     transition: var(--transition-smooth);
@@ -293,6 +301,7 @@ nav {
             background-clip: text;
             animation: titleGlow 3s ease-in-out infinite;
             word-break: break-word;
+            mix-blend-mode: screen;
         }
 
         @keyframes titleGlow {
@@ -687,10 +696,8 @@ nav {
                 transition: opacity 0.2s ease-in 0.1s, visibility 0.2s ease-in 0.1s;
             }
             .social-sidebar.sidebar-expanded .social-sidebar-toggle {
-                /* Optionally change toggle icon when expanded, e.g., to a close icon */
-                /* background: rgba(255,255,255,0.25); */
+                display: none; /* Hide toggle when expanded */
             }
-
 
             /* Fully expanded state when scrolled to bottom */
             .social-sidebar.fully-expanded-bottom {
@@ -731,6 +738,7 @@ nav {
             .page-title {
                 font-size: 1.8rem;
                 margin-bottom: 1.5rem;
+                mix-blend-mode: screen;
             }
 
             .project-card {
@@ -1038,10 +1046,11 @@ margin-left: 0;
     }
 
     .main-layout {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0.5rem;
-        min-height: calc(100vh - 120px);
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+    min-height: calc(100vh - 120px);
+    padding-top: 0.25rem;
     }
 
     .social-sidebar {
@@ -1112,7 +1121,7 @@ margin-left: 0;
     /* Expanded state by tapping toggle */
     .social-sidebar.sidebar-expanded {
         width: calc(100% - 1rem); /* Full width minus sidebar's own left/right padding */
-        justify-content: flex-start; /* Align items to the start */
+        justify-content: space-evenly; /* Align items evenly */
         padding: 0.5rem; 
         gap: 0.8rem; /* Restore original gap */
     }
@@ -1123,10 +1132,8 @@ margin-left: 0;
         transition: opacity 0.2s ease-in 0.1s, visibility 0.2s ease-in 0.1s;
     }
     .social-sidebar.sidebar-expanded .social-sidebar-toggle {
-        /* Optionally change toggle icon when expanded, e.g., to a close icon */
-        /* background: rgba(255,255,255,0.25); */
+        display: none; /* Hide toggle when expanded */
     }
-
 
     /* Fully expanded state when scrolled to bottom */
     .social-sidebar.fully-expanded-bottom {
@@ -1169,6 +1176,7 @@ padding-bottom: 6rem!important;
     margin: -0.5rem;
     margin-bottom: 0.5rem;
     opacity: 50%;
+    color: white;
     }
 
     .project-card {
@@ -1179,12 +1187,12 @@ padding: 1.2rem;
     }
 
     .project-image {
-width: calc(100% + 2.5rem);
-height: 180px;
-order: -1;
-margin: -1.25rem;
-border-radius: 20px 20px 0px 0px;
-margin-bottom: 0;
+    width: calc(100% + 2.55rem);
+    height: 180px;
+    order: -1;
+    margin: -1.25rem;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 0;
     }
 
     .project-info h3 {

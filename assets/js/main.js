@@ -190,7 +190,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (socialSidebarToggle && socialSidebar) {
         socialSidebarToggle.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default anchor behavior
+            event.preventDefault();
+            event.stopPropagation(); // Prevent document click handler from firing
             if (!socialSidebar.classList.contains('fully-expanded-bottom')) {
                 socialSidebar.classList.toggle('sidebar-expanded');
             }
@@ -210,22 +211,35 @@ window.addEventListener('scroll', function () {
     const socialSidebarToggle = document.getElementById('socialSidebarToggle');
 
     if (socialSidebar && socialSidebarToggle) {
-        // Check if on mobile (e.g., by checking viewport width or a CSS-driven class)
         const isMobile = window.innerWidth <= 768; 
 
         if (isMobile) {
-            const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20; // 20px buffer
+            // Close expanded sidebar on scroll
+            if (socialSidebar.classList.contains('sidebar-expanded')) {
+                socialSidebar.classList.remove('sidebar-expanded');
+            }
+
+            const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20;
 
             if (atBottom) {
                 socialSidebar.classList.add('fully-expanded-bottom');
-                socialSidebar.classList.remove('sidebar-expanded'); // Ensure tap expansion is off
+                socialSidebar.classList.remove('sidebar-expanded');
             } else {
                 socialSidebar.classList.remove('fully-expanded-bottom');
             }
         } else {
-            // On desktop, ensure it's not in mobile-specific expansion states
             socialSidebar.classList.remove('fully-expanded-bottom');
             socialSidebar.classList.remove('sidebar-expanded');
+        }
+    }
+
+    // Header blur on scroll
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
     }
 });
@@ -233,8 +247,19 @@ window.addEventListener('scroll', function () {
 document.addEventListener('click', function (event) {
     const navMenu = document.getElementById('navMenu');
     const navToggle = document.querySelector('.nav-toggle');
+    const socialSidebar = document.getElementById('socialSidebar');
+    const socialSidebarToggle = document.getElementById('socialSidebarToggle');
+
+    // Close nav menu
     if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
         closeNavMenuWithAnimation();
+    }
+
+    // Close social sidebar if clicking outside of it
+    if (socialSidebar && socialSidebarToggle && 
+        !socialSidebar.contains(event.target) && 
+        socialSidebar.classList.contains('sidebar-expanded')) {
+        socialSidebar.classList.remove('sidebar-expanded');
     }
 });
 
