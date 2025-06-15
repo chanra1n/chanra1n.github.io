@@ -133,6 +133,8 @@
     display: flex;
     align-items: center;
     height: 100%;
+    position: absolute;
+    left: 0.5rem;
 }
 
 .logo:hover {
@@ -424,23 +426,6 @@ nav {
             pointer-events: none;
         }
 
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: scale(1.025);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: var(--shadow-elevated);
-            z-index: 2;
-            position: relative;
-        }
-
-        .project-card:hover + .project-card {
-            margin-top: 1.5rem;
-            transition: margin-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
         .project-info h3 {
     font-size: 1.6rem;
     font-weight: 900;
@@ -472,7 +457,7 @@ nav {
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     color: var(--primary-text);
-    padding: 0.6rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: var(--border-radius);
     font-family: var(--font-secondary);
     font-size: 1rem;
@@ -485,6 +470,7 @@ nav {
     overflow: hidden;
     flex-shrink: 0;
     width: 100%;
+    text-transform: uppercase;
 }
 
 .btn i, .nav-link i {
@@ -819,10 +805,6 @@ nav {
                 grid-template-columns: 1fr;
                 gap: 1.2rem;
                 padding: 1.2rem;
-            }
-
-            .project-card:hover + .project-card {
-                margin-top: 1.2rem;
             }
 
             .project-image {
