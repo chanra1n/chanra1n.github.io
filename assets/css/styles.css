@@ -14,7 +14,7 @@
             --glass-border: rgba(255, 255, 255, 0.2);
             --blur-amount: 20px;
             --border-radius: 20px;
-            --border-radius-inset: 10px;
+            --border-radius-inset: 15px;
             --border-radius-circle: 50%;
             --border-radius-pill: 100vmin;
             --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -37,11 +37,11 @@
             background-image:
                 linear-gradient(
                     120deg,
-                    rgba(255, 0, 128, 0.125) 0%,
-                    rgba(0, 255, 255, 0.125) 25%,
-                    rgba(0, 255, 128, 0.125) 50%,
-                    rgba(255, 255, 0, 0.125) 75%,
-                    rgba(255, 0, 128, 0.125) 100%
+                    rgba(255, 0, 128, 0.3) 0%,
+                    rgba(0, 255, 255, 0.3) 25%,
+                    rgba(0, 255, 128, 0.3) 50%,
+                    rgba(255, 255, 0, 0.3) 75%,
+                    rgba(255, 0, 128, 0.3) 100%
                 ),
                 linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             box-shadow: none;
@@ -152,7 +152,7 @@ nav {
     background: transparent;
     border-radius: var(--border-radius);
     color: var(--primary-text);
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     padding: 0;
     transition: var(--transition-smooth);
@@ -460,7 +460,7 @@ nav {
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius);
     font-family: var(--font-secondary);
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     text-decoration: none;
     display: flex;
@@ -626,7 +626,7 @@ nav {
             }
 
             .logo {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
                 order: 1;
             }
 
@@ -637,7 +637,7 @@ nav {
 
             .nav-menu {
     position: absolute;
-    top: calc(100% + 0.25rem);
+    top: calc(100% + 0.75rem);
     left: 0.5rem;
     right: 0.5rem;
     flex-direction: column;
@@ -796,7 +796,7 @@ nav {
             }
 
             .page-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: -0.5rem;
     margin-bottom: 0.5rem;
     opacity: 50%;
@@ -960,14 +960,14 @@ nav {
 @keyframes bubblePopIn {
     0% {
         opacity: 0;
-        transform: scale(0.92, 1.08) translateY(32px);
+        transform: scale(0.96, 1.04) translateY(32px);
     }
     50% {
         opacity: 1;
-        transform: scale(1.03, 0.97) translateY(-3px);
+        transform: scale(1.015, 0.985) translateY(-3px);
     }
     70% {
-        transform: scale(0.98, 1.01) translateY(1px);
+        transform: scale(0.99, 1.01) translateY(1px);
     }
     100% {
         opacity: 1;
@@ -981,28 +981,28 @@ nav {
     }
     40% {
         opacity: 0.7;
-        transform: scale(1.03, 0.97) translateY(7px);
+        transform: scale(1.015, 0.985) translateY(7px);
     }
     80% {
         opacity: 0.3;
-        transform: scale(0.92, 1.08) translateY(24px);
+        transform: scale(0.96, 1.04) translateY(24px);
     }
     100% {
         opacity: 0;
-        transform: scale(0.92, 1.08) translateY(32px);
+        transform: scale(0.96, 1.04) translateY(32px);
     }
 }
 @keyframes navMenuPopIn {
     0% {
         opacity: 0;
-        transform: scale(0.92, 1.08) translateY(-24px);
+        transform: scale(0.96, 1.04) translateY(-24px);
     }
     50% {
         opacity: 1;
-        transform: scale(1.03, 0.97) translateY(4px);
+        transform: scale(1.015, 0.985) translateY(4px);
     }
     70% {
-        transform: scale(0.98, 1.01) translateY(-1px);
+        transform: scale(0.99, 1.01) translateY(-1px);
     }
     100% {
         opacity: 1;
@@ -1016,15 +1016,15 @@ nav {
     }
     40% {
         opacity: 0.7;
-        transform: scale(1.03, 0.97) translateY(-6px);
+        transform: scale(1.015, 0.985) translateY(-6px);
     }
     80% {
         opacity: 0.3;
-        transform: scale(0.92, 1.08) translateY(-18px);
+        transform: scale(0.96, 1.04) translateY(-18px);
     }
     100% {
         opacity: 0;
-        transform: scale(0.92, 1.08) translateY(-24px);
+        transform: scale(0.96, 1.04) translateY(-24px);
     }
 }
 
@@ -1132,7 +1132,7 @@ nav {
     justify-content: center;
     width: 100%;
     height: 60px;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-inset);
     color: #fff;
     font-size: 2rem;
     transition: background 0.2s, transform 0.2s, color 0.2s;
@@ -1141,20 +1141,39 @@ nav {
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
     position: relative;
     background: rgba(255,255,255,0.12);/* fallback, will be overridden below */
+    animation: bubbleFloatTag 3s ease-in-out infinite;
+    will-change: transform;
 }
 
-/* Platform-specific background colors */
+@keyframes bubbleFloatTag {
+    0%   { transform: translateY(0) scale(1); }
+    20%  { transform: translateY(-2px) scale(1.02); }
+    40%  { transform: translateY(2px) scale(0.99); }
+    60%  { transform: translateY(-1px) scale(1.01); }
+    80%  { transform: translateY(1px) scale(0.99); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Platform-specific glass gradients */
 .music-icon.spotify {
-    background: #1db954;
+    background: linear-gradient(135deg, rgba(29,185,84,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    backdrop-filter: blur(var(--blur-amount));
+    animation-delay: 0s;
 }
 .music-icon.apple {
-    background: #fa2d48;
+    background: linear-gradient(135deg, rgba(250,45,72,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    backdrop-filter: blur(var(--blur-amount));
+    animation-delay: 0.4s;
 }
 .music-icon.amazon {
-    background: #25d1da;
+    background: linear-gradient(135deg, rgba(37,209,218,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    backdrop-filter: blur(var(--blur-amount));
+    animation-delay: 0.8s;
 }
 .music-icon.youtube {
-    background: #ff0000;
+    background: linear-gradient(135deg, rgba(255,0,0,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    backdrop-filter: blur(var(--blur-amount));
+    animation-delay: 1.2s;
 }
 
 /* Always white icon for contrast */
@@ -1167,4 +1186,20 @@ nav {
     filter: brightness(1.15) drop-shadow(0 0 8px rgba(0,0,0,0.12));
     transform: scale(1.12) rotate(-5deg);
     z-index: 1;
+}
+
+/* Staggered pop-in for project cards */
+.project-grid .project-card {
+    animation: bubblePopIn 0.75s cubic-bezier(.33,1.25,.5,1) both;
+    animation-delay: 0.25s;
+    opacity: 0;
+}
+.project-grid .project-card:nth-child(1) { animation-delay: 0.5s; }
+.project-grid .project-card:nth-child(2) { animation-delay: 0.75s; }
+.project-grid .project-card:nth-child(3) { animation-delay: 1s; }
+.project-grid .project-card:nth-child(4) { animation-delay: 1.25s; }
+.project-grid .project-card:nth-child(5) { animation-delay: 1.50s; }
+
+.page-content.active .project-card {
+    opacity: 1;
 }
