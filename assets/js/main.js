@@ -78,7 +78,7 @@ class ParticleSystem {
     animateParticles() {
         const now = performance.now();
         const vh = this.viewportHeight;
-        const vw = this.viewportWidth;
+        // const vw = this.viewportWidth; // Removed unused variable
         for (let i = this.particles.length - 1; i >= 0; i--) {
             const p = this.particles[i];
             if (!p.alive) continue;
@@ -144,8 +144,8 @@ function switchTab(tabName, event) {
     if (event && event.currentTarget) {
         navLink = event.currentTarget;
         navItem = navLink.closest('.nav-item');
-    } else if (window.event && window.event.target) {
-        navLink = window.event.target.closest('.nav-link');
+    } else if (event && event.target) {
+        navLink = event.target.closest('.nav-link');
         navItem = navLink ? navLink.closest('.nav-item') : null;
     }
     if (navItem) navItem.classList.add('active');
@@ -212,6 +212,152 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Logo decoding animation
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        const originalText = logo.textContent;
+        const spansInfo = [];
+
+        logo.innerHTML = '';
+        const normalFontFamily = window.getComputedStyle(logo).fontFamily;
+        const alternaFontFamily = "'alterna', sans-serif";
+
+        // 1. Wrap each char in a span, use nbsp for spaces, and set minWidth for monospace effect
+        for (let i = 0; i < originalText.length; i++) {
+            const char = originalText[i];
+            const span = document.createElement('span');
+            span.style.display = 'inline-block';
+            span.style.verticalAlign = 'bottom';
+            // 2. Fix font height jump: set a min-width and min-height based on normal font
+            span.style.minWidth = '0.65em';
+            span.style.minHeight = '1em';
+            span.style.lineHeight = '1em';
+
+            if (char === ' ') {
+                span.innerHTML = '&nbsp;';
+                span.style.fontFamily = normalFontFamily;
+            } else {
+                span.textContent = char;
+            }
+            logo.appendChild(span);
+            spansInfo.push({
+                element: span,
+                originalChar: char === ' ' ? '\u00A0' : char,
+                isSpace: (char === ' ')
+            });
+        }
+
+        function randomChar() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=';
+            return chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        let isFastDecoding = false;
+        let endlessLoopTimeoutId = null;
+        let hoverFastDecodeTimeoutId = null;
+
+        function runFastDecoding(onCompleteCallback) {
+            isFastDecoding = true;
+            clearTimeout(endlessLoopTimeoutId);
+            clearTimeout(hoverFastDecodeTimeoutId);
+
+            let cycles = 0;
+            // 1. Reduce maxCycles and randomness for a less "chaotic" initial effect
+            const maxCycles = 8;
+
+            function step() {
+                cycles++;
+                spansInfo.forEach(info => {
+                    if (info.isSpace) {
+                        info.element.innerHTML = '&nbsp;';
+                        info.element.style.fontFamily = normalFontFamily;
+                        return;
+                    }
+                    if (cycles < maxCycles) {
+                        // Only scramble a small subset each cycle for a less overwhelming effect
+                        if (Math.random() < 0.22) {
+                            info.element.textContent = randomChar();
+                            info.element.style.fontFamily = alternaFontFamily;
+                        } else {
+                            info.element.textContent = info.originalChar;
+                            info.element.style.fontFamily = normalFontFamily;
+                        }
+                    } else {
+                        info.element.textContent = info.originalChar;
+                        info.element.style.fontFamily = normalFontFamily;
+                    }
+                });
+
+                if (cycles < maxCycles) {
+                    setTimeout(step, 38);
+                } else {
+                    isFastDecoding = false;
+                    if (onCompleteCallback) {
+                        onCompleteCallback();
+                    }
+                }
+            }
+            step();
+        }
+
+        function startEndlessScramble() {
+            clearTimeout(endlessLoopTimeoutId);
+
+            function scramble() {
+                if (isFastDecoding) {
+                    endlessLoopTimeoutId = setTimeout(scramble, 200 + Math.random() * 150);
+                    return;
+                }
+
+                spansInfo.forEach(info => {
+                    if (info.isSpace) return;
+                    if (Math.random() < 0.08) {
+                        info.element.textContent = randomChar();
+                        info.element.style.fontFamily = alternaFontFamily;
+                        setTimeout(() => {
+                            if (!isFastDecoding) {
+                                info.element.textContent = info.originalChar;
+                                info.element.style.fontFamily = normalFontFamily;
+                            }
+                        }, 200 + Math.random() * 300);
+                    }
+                });
+                endlessLoopTimeoutId = setTimeout(scramble, 200 + Math.random() * 200);
+            }
+            scramble();
+        }
+
+        runFastDecoding(startEndlessScramble);
+
+        const triggerReDecode = () => {
+            clearTimeout(hoverFastDecodeTimeoutId);
+            hoverFastDecodeTimeoutId = setTimeout(() => {
+                runFastDecoding(startEndlessScramble);
+            }, 50);
+        };
+
+        logo.addEventListener('mouseenter', triggerReDecode);
+        logo.addEventListener('focus', triggerReDecode);
+    }
+
+    // --- PAGE POP-IN ANIMATION ---
+    // Add .page-pop-animate to all main page elements to hide them initially
+    document.body.classList.add('page-pop-animate');
+    document.querySelectorAll('.header, .main-layout, .floating-particles').forEach(el => {
+        el.classList.add('page-pop-animate');
+    });
+
+    // When everything is ready, pop them in
+    window.requestAnimationFrame(() => {
+        setTimeout(() => {
+            document.body.style.opacity = '1'; // Ensure body is visible
+            document.body.classList.add('page-pop-in');
+            document.querySelectorAll('.header, .main-layout').forEach(el => {
+                el.classList.add('page-pop-in');
+            });
+        }, 60); // slight delay for effect
+    });
 });
 
 // Ensure initial scroll position is at the top after all resources are loaded

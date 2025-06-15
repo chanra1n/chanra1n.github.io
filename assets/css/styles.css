@@ -51,6 +51,7 @@
             min-height: 100dvh;
             position: relative;
             overflow-y: scroll;
+            opacity: 0;
         }
 
         body::before {
@@ -80,7 +81,7 @@
         .header {
     background: transparent;
     color: var(--primary-text);
-    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -128,6 +129,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .logo:hover {
@@ -205,6 +209,7 @@ nav {
     white-space: nowrap;
     gap: 0.5rem;
     transition: var(--transition-smooth);
+    border-radius: var(--border-radius-pill)!important;
         }
 
         /* --- NAV ITEM/LINK HOVER & ACTIVE --- */
@@ -469,7 +474,7 @@ nav {
     padding: 0.6rem 1rem;
     border-radius: var(--border-radius);
     font-family: var(--font-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
     display: flex;
@@ -479,7 +484,6 @@ nav {
     overflow: hidden;
     flex-shrink: 0;
     width: 100%;
-    padding-left: 2.6em; /* more space for icon circle */
 }
 
 .btn i, .nav-link i {
@@ -673,7 +677,7 @@ nav {
 
             .nav-item {
                 width: 100%;
-                border-radius: var(--border-radius);
+                border-radius: var(--border-radius-pill);
                 margin-bottom: 0;
             }
 
@@ -918,7 +922,7 @@ nav {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
-    opacity: 25%;
+    opacity: 25%!important;
     mix-blend-mode: screen;
 }
 .particle {
@@ -1112,4 +1116,19 @@ nav {
         box-shadow: none;
         transform: none;
     }
+}
+
+/* --- PAGE POP-IN ANIMATION --- */
+.page-pop-animate {
+    opacity: 0;
+    transform: scale(0.96) translateY(32px);
+    transition:
+        opacity 0.5s cubic-bezier(.33,1.25,.5,1),
+        transform 0.5s cubic-bezier(.33,1.25,.5,1);
+    will-change: opacity, transform;
+}
+
+.page-pop-animate.page-pop-in {
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
