@@ -723,10 +723,12 @@ nav {
                 flex-direction: row;
                 gap: 0.5rem;
                 align-items: center;
+                justify-content: space-between;
                 opacity: 0;
                 visibility: hidden;
                 transition: opacity 0.15s ease-out, visibility 0.15s ease-out;
                 max-width: 0;
+                width: 100%;
             }
 
             .social-sidebar .social-link-item {
@@ -758,10 +760,10 @@ nav {
             }
 
             .social-sidebar.fully-expanded-bottom {
-                width: calc(100% - 1rem);
-                justify-content: center;
-                padding: 0.8rem;
-                gap: 0.8rem;
+    width: calc(100% - 1rem);
+    justify-content: space-evenly;
+    padding: 2rem 1rem;
+    gap: 0.8rem;
             }
             
             .social-sidebar.fully-expanded-bottom .social-links-container {
@@ -790,7 +792,7 @@ nav {
                 order: 1;
                 max-height: none;
                 overflow: visible;
-                padding-bottom: 6rem!important;
+                padding-bottom: 5rem!important;
             }
 
             .page-title {
@@ -1114,4 +1116,55 @@ nav {
 .page-pop-animate.page-pop-in {
     opacity: 1;
     transform: scale(1) translateY(0);
+}
+
+/* Music Platform Icons */
+.music-platform-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.music-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    border-radius: var(--border-radius);
+    color: #fff;
+    font-size: 2rem;
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    position: relative;
+    background: rgba(255,255,255,0.12);/* fallback, will be overridden below */
+}
+
+/* Platform-specific background colors */
+.music-icon.spotify {
+    background: #1db954;
+}
+.music-icon.apple {
+    background: #fa2d48;
+}
+.music-icon.amazon {
+    background: #25d1da;
+}
+.music-icon.youtube {
+    background: #ff0000;
+}
+
+/* Always white icon for contrast */
+.music-icon i {
+    color: #fff;
+}
+
+/* Subtle highlight on hover */
+.music-icon:hover {
+    filter: brightness(1.15) drop-shadow(0 0 8px rgba(0,0,0,0.12));
+    transform: scale(1.12) rotate(-5deg);
+    z-index: 1;
 }
