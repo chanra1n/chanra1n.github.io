@@ -1,48 +1,131 @@
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+
 class ParticleSystem {
     constructor() {
         this.container = document.getElementById('particles');
-        this.maxParticles = 40;
-        this.particleTypes = ['particle-small', 'particle-medium', 'particle-large', 'particle-glow'];
+        this.maxParticles = 50;
+        this.particleTypes = ['particle-small', 'particle-medium'];
         this.isRunning = false;
         this.spawnInterval = null;
+        this.particles = [];
         if (!this.container) return;
+        this.viewportHeight = window.innerHeight;
+        this.viewportWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            this.viewportHeight = window.innerHeight;
+            this.viewportWidth = window.innerWidth;
+        });
         this.start();
+        this.animateParticles = this.animateParticles.bind(this);
+        requestAnimationFrame(this.animateParticles);
     }
+
     spawnParticle() {
-        if (this.container.childElementCount >= this.maxParticles) return;
-        const particle = document.createElement('div');
-        particle.className = 'particle ' + this.particleTypes[Math.floor(Math.random() * this.particleTypes.length)];
-        const startX = Math.random() * 100;
-        const drift = (Math.random() - 0.5) * 120;
-        const duration = Math.random() * 8 + 10;
-        const delay = Math.random() * 2;
-        particle.style.left = `${startX}%`;
-        particle.style.bottom = '0px';
-        particle.style.setProperty('--drift', `${drift}px`);
-        particle.style.animation = `particleRise ${duration}s linear ${delay}s 1 both`;
-        this.container.appendChild(particle);
+        if (this.particles.length >= this.maxParticles) return;
+        const type = this.particleTypes[Math.floor(Math.random() * this.particleTypes.length)];
+        const el = document.createElement('div');
+        el.className = 'particle ' + type;
+
+        // Logical properties for simulation
+        const layer = Math.random();
+        const baseX = Math.random();
+        const baseY = Math.random();
+        const speed = 0.0002 + Math.random() * 0.0008;
+        const drift = (Math.random() - 0.5) * 0.01;
+        const wobbleAmp = 0.003 + Math.random() * 0.008;
+        const wobbleFreq = 0.2 + Math.random() * 0.5;
+        const twinkleDuration = 1.5 + Math.random() * 2.5;
+        const twinkleDelay = Math.random() * 2;
+
+        el.style.animation = `twinkle ${twinkleDuration}s ease-in-out ${twinkleDelay}s infinite`;
+
+        let y = baseY * 1.2;
+        let x = baseX;
+
+        el.style.position = 'absolute';
+        el.style.opacity = 0;
+        this.container.appendChild(el);
+
+        const particle = {
+            el,
+            layer,
+            x,
+            y,
+            speed,
+            drift,
+            wobbleAmp,
+            wobbleFreq,
+            born: performance.now(),
+            opacity: 0,
+            alive: true,
+            removing: false
+        };
+        this.particles.push(particle);
+
+        // Fade in
         setTimeout(() => {
-            if (particle.parentNode) particle.parentNode.removeChild(particle);
-        }, (duration + delay) * 1000);
+            el.style.transition = 'opacity 0.7s cubic-bezier(.4,0,.2,1)';
+            el.style.opacity = 1;
+            particle.opacity = 1;
+        }, 10);
     }
+
+    animateParticles() {
+        const now = performance.now();
+        const vh = this.viewportHeight;
+        const vw = this.viewportWidth;
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+            const p = this.particles[i];
+            if (!p.alive) continue;
+            // Move upward, much slower for realistic dust
+            p.y -= p.speed * (1 - p.layer * 0.6);
+            p.x += p.drift * p.speed * 0.5;
+            const wobble = Math.sin((now - p.born) * 0.001 * p.wobbleFreq) * p.wobbleAmp;
+            const parallaxY = p.y + window.scrollY / vh * p.layer * 0.5;
+
+            // If particle is out of bounds and not already fading out, start fade out
+            if ((parallaxY < -0.05 || p.x < -0.05 || p.x > 1.05) && !p.removing) {
+                p.removing = true;
+                p.el.style.transition = 'opacity 0.7s cubic-bezier(.4,0,.2,1)';
+                p.el.style.opacity = 0;
+                setTimeout(() => {
+                    p.el.remove();
+                    this.particles.splice(i, 1);
+                    if (this.isRunning) this.spawnParticle();
+                }, 700); // match fade out duration
+                continue;
+            }
+            if (p.removing) continue;
+
+            p.el.style.left = `${p.x * 100}%`;
+            p.el.style.top = `${parallaxY * 100}%`;
+            p.el.style.transform = `translateX(${wobble * 100}%)`;
+        }
+        if (this.isRunning && this.particles.length < this.maxParticles) {
+            this.spawnParticle();
+        }
+        requestAnimationFrame(this.animateParticles);
+    }
+
     start() {
         if (this.isRunning) return;
         this.isRunning = true;
         for (let i = 0; i < this.maxParticles; i++) {
-            setTimeout(() => this.spawnParticle(), i * 200);
+            this.spawnParticle();
         }
-        this.spawnInterval = setInterval(() => {
-            if (this.container.childElementCount < this.maxParticles) {
-                this.spawnParticle();
-            }
-        }, 700);
     }
     stop() {
         this.isRunning = false;
-        if (this.spawnInterval) clearInterval(this.spawnInterval);
     }
     cleanup() {
-        // No-op for now, kept for compatibility
+        // Remove all particles
+        this.particles.forEach(p => p.el.remove());
+        this.particles = [];
     }
 }
 
@@ -77,22 +160,17 @@ function toggleMobileMenu() {
 
 function closeNavMenuWithAnimation() {
     const navMenu = document.getElementById('navMenu');
-    if (navMenu.classList.contains('active')) {
+    if (navMenu.classList.contains('active') && !navMenu.classList.contains('menu-anim-out')) {
         navMenu.classList.add('menu-anim-out');
         navMenu.classList.remove('menu-anim-in');
-        setTimeout(() => navMenu.classList.remove('active', 'menu-anim-out'), 350);
+        // Remove only after animation ends
+        navMenu.addEventListener('animationend', function handler(e) {
+            if (e.animationName === 'navMenuPopOut') {
+                navMenu.classList.remove('active', 'menu-anim-out');
+                navMenu.removeEventListener('animationend', handler);
+            }
+        });
     }
-}
-
-function initTooltips() {
-    tippy('[data-tippy-content]', {
-        placement: 'right',
-        placement: 'right',
-        duration: 300,
-        delay: [500, 200],
-        offset: [0, 15],
-        animation: 'scale'
-    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -106,10 +184,50 @@ document.addEventListener('DOMContentLoaded', function () {
             else particleSystem.start();
         }
     });
+
+    const socialSidebar = document.getElementById('socialSidebar');
+    const socialSidebarToggle = document.getElementById('socialSidebarToggle');
+
+    if (socialSidebarToggle && socialSidebar) {
+        socialSidebarToggle.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            if (!socialSidebar.classList.contains('fully-expanded-bottom')) {
+                socialSidebar.classList.toggle('sidebar-expanded');
+            }
+        });
+    }
+});
+
+// Ensure initial scroll position is at the top after all resources are loaded
+window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
 });
 
 window.addEventListener('scroll', function () {
     closeNavMenuWithAnimation();
+
+    const socialSidebar = document.getElementById('socialSidebar');
+    const socialSidebarToggle = document.getElementById('socialSidebarToggle');
+
+    if (socialSidebar && socialSidebarToggle) {
+        // Check if on mobile (e.g., by checking viewport width or a CSS-driven class)
+        const isMobile = window.innerWidth <= 768; 
+
+        if (isMobile) {
+            const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20; // 20px buffer
+
+            if (atBottom) {
+                socialSidebar.classList.add('fully-expanded-bottom');
+                socialSidebar.classList.remove('sidebar-expanded'); // Ensure tap expansion is off
+            } else {
+                socialSidebar.classList.remove('fully-expanded-bottom');
+            }
+        } else {
+            // On desktop, ensure it's not in mobile-specific expansion states
+            socialSidebar.classList.remove('fully-expanded-bottom');
+            socialSidebar.classList.remove('sidebar-expanded');
+        }
+    }
 });
 
 document.addEventListener('click', function (event) {
@@ -132,65 +250,10 @@ window.addEventListener('beforeunload', function () {
     if (particleSystem) particleSystem.stop();
 });
 
-// Rainbow gradient color shifting on scroll and device tilt (fluid & dynamic)
+// Wii U style: no color shifting, just twinkling/sparkling particles
 (function () {
-    let tiltX = 0, tiltY = 0;
-    let lastHue = 0, lastSat = 1;
-    let lastScrollY = window.scrollY;
-
-    function setGradientHue(hue = 0, sat = 1) {
-        hue = Math.round(hue) % 360;
-        sat = Math.max(0.7, Math.min(1.3, sat));
-        if (hue === lastHue && sat === lastSat) return;
-        lastHue = hue; lastSat = sat;
-        const styleId = 'rainbow-gradient-hue-style';
-        let style = document.getElementById(styleId);
-        if (!style) {
-            style = document.createElement('style');
-            style.id = styleId;
-            document.head.appendChild(style);
-        }
-        style.textContent = `
-            body::before {
-                filter: hue-rotate(${hue}deg) saturate(${sat});
-                transition: filter 0.12s cubic-bezier(.4,0,.2,1);
-            }
-        `;
-    }
-
-    // Make color shift fluid and dynamic to scroll velocity and direction
-    let lastFrame = performance.now();
-    let velocity = 0;
-    let lastScroll = window.scrollY;
-
-    function animate() {
-        const now = performance.now();
-        const scrollY = window.scrollY;
-        const dt = Math.max(1, now - lastFrame);
-        // Calculate velocity (pixels/ms)
-        velocity = (scrollY - lastScroll) / dt;
-        lastScroll = scrollY;
-        lastFrame = now;
-
-        // Use velocity and tilt for hue/sat
-        const baseHue = (scrollY * 0.25 + tiltX * 1.5 + tiltY * 0.5) % 360;
-        // Add a velocity-based offset for dynamic color shifting
-        const hue = (baseHue + velocity * 180) % 360;
-        const sat = 1 + Math.min(0.3, Math.abs(velocity) * 2) + Math.abs(tiltY) / 120;
-
-        setGradientHue(hue, sat);
-
-        requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-
-    // Device tilt: shift hue and saturation based on device orientation
-    window.addEventListener('deviceorientation', function (event) {
-        const gamma = event.gamma || 0;
-        const beta = event.beta || 0;
-        tiltX = Math.max(-30, Math.min(30, gamma));
-        tiltY = Math.max(-30, Math.min(30, beta - 45));
-    }, true);
-
-    setGradientHue(0, 1);
+    // Remove any previous gradient/brightness animation logic
+    const styleId = 'rgb-gradient-bright-style';
+    let style = document.getElementById(styleId);
+    if (style) style.remove();
 })();
