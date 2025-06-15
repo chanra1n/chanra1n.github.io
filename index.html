@@ -3,657 +3,182 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHANRAIN.COM</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/css/uikit.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Savate:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="assets/images/icon.png" type="image/x-icon">
     <script src="https://unpkg.com/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
-    <style>
-        body,
-        html {
-            font-family: 'Big Shoulders Inline' !important;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        a,
-        p,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Big Shoulders Inline' !important;
-        }
-
-        .uk-navbar {
-            background-color: black;
-            border-radius: 0px;
-            height: 40px;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .uk-navbar .uk-logo {
-            color: white;
-            font-size: 1.5rem;
-            text-shadow: 5px 5px 0px gray;
-            font-weight: 900;
-            min-height: auto;
-            line-height: 40px;
-            background-color: black;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .uk-navbar-nav>li>a {
-            color: black;
-            font-size: 1.25rem;
-            min-height: auto;
-            line-height: 35px;
-            white-space: nowrap;
-            font-family: 'Fjalla One' !important;
-        }
-
-        .uk-navbar li {
-            background-color: white;
-            margin: 0.5rem;
-            border-radius: 0.5rem 0.5rem 0px 0px;
-            margin-left: 0px;
-            margin-bottom: 0rem;
-            color: white;
-            opacity: 0.5;
-        }
-
-        .uk-navbar li.active {
-            opacity: 1;
-        }
-
-        .uk-navbar li.active a {
-            color: black;
-        }
-
-        .uk-navbar li:last-child {
-            border-radius: 0.5rem 0px 0px 0px;
-            margin-right: 0px;
-        }
-
-        .uk-navbar a i {
-            margin-right: 10px;
-            font-size: 1rem;
-        }
-
-        /* FIX: Body Layout Below Navbar */
-        .main-container {
-            display: flex;
-            height: calc(100vh - 40px);
-            /* Full height minus navbar */
-            width: 100%;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: min-content;
-            background-color: black;
-            color: white;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 0.5rem;
-            background-color: white;
-            margin: 0.5rem;
-            border-radius: 0.5rem 0.5rem 0px 0.5rem;
-            color: black;
-            line-height: normal;
-            width: fit-content;
-            margin-right: 0.75rem;
-        }
-
-        .sidebar ul li a {
-            color: black;
-            text-decoration: none;
-            display: block;
-            font-weight: 100;
-            font-size: 1.25rem;
-        }
-
-        /* Main Content */
-        .content {
-            width: 100%;
-            padding: 1rem;
-            overflow-y: auto;
-            z-index: 10;
-        }
-
-        .content h1,
-        .content h2,
-        .content h3,
-        .content h4,
-        .content h5,
-        .content h6 {
-            font-weight: 900;
-            font-size: 2rem;
-            color: black;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-
-        .content h1 {
-            font-size: 1.5rem;
-            color: #666;
-        }
-
-        .project-listing {
-            border: 2.5px solid black;
-            padding: 1rem;
-            box-shadow: 10px 10px 0px black;
-            width: fit-content;
-            margin: 0px;
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            position: relative;
-            margin-bottom: 1.5rem;
-            max-width: 40rem;
-            background-color: white;
-        }
-
-        .project-listing h1 {
-            font-size: 1.75rem;
-        }
-
-        .project-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .project-content button {
-            background-color: black;
-            color: white;
-            font-size: 1.25rem;
-            padding: 0.25rem;
-            border-radius: 1rem 1rem 1rem 0px;
-            font-family: 'Fjalla One' !important;
-        }
-
-        .project-listing img {
-            flex: 0 0 50%;
-            max-width: 10rem;
-            height: 100%;
-            object-fit: cover;
-            margin-left: 1rem;
-            border-radius: 1rem 1rem 0px 1rem;
-        }
-
-        .project-listing p {
-            margin-top: 0px;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-listing button i {
-            margin-right: 7.5px;
-        }
-
-        .project-listing hr {
-            margin-top: -0.25rem;
-            margin-bottom: 0.75rem;
-            border: 1px solid gray;
-            width: 50%;
-            border-radius: 100vmin;
-        }
-
-        .project-content .music-button {
-            display: inline-flex;
-            width: fit-content;
-            padding: 0px 0.75rem;
-            white-space: nowrap;
-            margin: 0.25rem;
-        }
-
-
-
-        @media (max-width: 48rem) {
-            .sidebar {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background-color: black;
-                display: flex;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 0.5rem 0;
-                z-index: 1000;
-            }
-
-            .sidebar ul {
-                display: flex;
-                flex-direction: row;
-                padding: 0;
-                margin: 0;
-                width: 100%;
-                padding-right: 1.5rem;
-            }
-
-            .sidebar ul li {
-                flex: 0 0 auto;
-                margin: 0.25rem 1rem;
-                padding: 0px;
-                background-color: black;
-                border-radius: 0.5rem;
-                color: white;
-                text-align: center;
-            }
-
-            .sidebar ul li a {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                font-size: 0.75rem;
-                color: white;
-            }
-
-            .sidebar ul li a i {
-                font-size: 1.5rem;
-                margin-bottom: 0.25rem;
-            }
-
-            .project-listing img {
-                display: none;
-            }
-
-            .uk-navbar .uk-logo {
-                position: relative;
-                white-space: nowrap;
-            }
-
-            .content {
-                padding-bottom: 3rem;
-            }
-
-            .tippy-box {
-                display:none!important;
-            }
-        }
-
-        .about-container {
-            display: flex;
-            align-items: stretch;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 1rem;
-            height: -webkit-fill-available;
-        }
-
-        .about-text {
-            flex: 1;
-            max-width: 66%;
-        }
-
-        .about-image-grid {
-            flex: 1;
-            max-width: 33%;
-            max-height: 100%;
-            display: flex;
-            align-items: stretch;
-            overflow: hidden;
-            margin: 0.25rem;
-            border-radius: 1rem 1rem 0px 1rem;
-            margin-left: 0.5rem;
-        }
-
-        .about-image-grid img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0px;
-            object-position: top;
-            opacity: 75%;
-            mix-blend-mode: multiply;
-        }
-
-        @media (max-width: 48rem) {
-            .about-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .about-text {
-                max-width: 100%;
-            }
-
-            .about-image-grid {
-                display: none !important;
-            }
-
-            #backgroundImage {
-                display: none !important;
-            }
-        }
-
-        .about-text p {
-            font-size: 1.25rem;
-            border: 2.5px solid black;
-            padding: 1rem;
-            margin-top: 0.5rem;
-            box-shadow: 10px 10px 0px black;
-            color: black;
-        }
-
-        #backgroundImage {
-            position: absolute;
-            top: 2.5rem;
-            height: -webkit-fill-available;
-            right: 0;
-            opacity: 100%;
-            width: 100%;
-            object-fit: cover;
-            background-color: gray;
-            border-radius: 0px;
-            filter: grayscale(1) brightness(100%) contrast(125%);
-            display: none;
-        }
-
-        .tippy-box {
-            background-color: black;
-            color: white;
-            border-radius: 0px;
-            font-size: 0.75rem;
-            font-family: 'Fjalla One' !important;
-            padding:0.25rem;
-            border-radius: 0.5rem 0.5rem 0.5rem 0px;
-            margin-left:0.25rem;
-            box-shadow: 2.5px 2.5px 0px white;
-        }
-
-        .tippy-arrow {
-            display:none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
+    <div class="floating-particles" id="particles"></div>
 
-    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-        <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="https://chanrain.com">CHAN RAIN</a>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">CHAN RAIN</a>
+            <button class="nav-toggle" onclick="toggleMobileMenu()">
+                <i class="ri-menu-line"></i>
+            </button>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link" onclick="switchTab('projects')">
+                            <i class="ri-pencil-ruler-2-fill"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="switchTab('about')">
+                            <i class="ri-user-fill"></i>
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="switchTab('contact')">
+                            <i class="ri-chat-1-fill"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="uk-navbar-right">
-            <ul class="uk-navbar-nav">
-                <li class="active">
-                    <a onclick="swapTabs('projects')">
-                        <i class="ri-pencil-ruler-2-fill"></i>
-                        Projects
-                    </a>
-                </li>
+    </header>
 
-                <li>
-                    <a onclick="swapTabs('about')">
-                        <i class="ri-user-fill"></i>
-                        About
-                    </a>
-                </li>
+    <div class="main-layout">
+        <aside class="social-sidebar">
+            <a href="https://instagram.com/_chanrain" target="_blank" class="social-link"
+                data-tippy-content="@_chanrain">
+                <i class="ri-instagram-fill"></i>
+            </a>
+            <a href="https://github.com/chanra1n" target="_blank" class="social-link" data-tippy-content="@chanra1n">
+                <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://discordapp.com/users/750845810396364900" target="_blank" class="social-link"
+                data-tippy-content="@chanrain">
+                <i class="ri-discord-fill"></i>
+            </a>
+            <a href="https://steamcommunity.com/id/chanrain" target="_blank" class="social-link"
+                data-tippy-content="@chanrain">
+                <i class="ri-steam-fill"></i>
+            </a>
+            <a href="https://www.tumblr.com/chanrain" target="_blank" class="social-link"
+                data-tippy-content="@chanrain">
+                <i class="ri-tumblr-fill"></i>
+            </a>
+            <a href="https://youtube.com/@chanra1n" target="_blank" class="social-link" data-tippy-content="@chanra1n">
+                <i class="ri-youtube-fill"></i>
+            </a>
+        </aside>
 
-                <li>
-                    <a onclick="swapTabs('contact')">
-                        <i class="ri-chat-1-fill"></i>
-                        Contact
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <main class="content">
+            <!-- Projects Tab -->
+            <div id="projects" class="page-content active">
+                <h1 class="page-title">Current Projects</h1>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-info">
+                            <h3>SCAM CENTER TYCOON</h3>
+                            <p>RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev
+                                meets game dev, on steroids. Enjoy.</p>
+                            <div class="project-buttons">
+                                <a href="https://scamcentertycoon.com" target="_blank" class="btn">
+                                    <i class="ri-gamepad-fill"></i>
+                                    PLAY NOW
+                                </a>
+                            </div>
+                        </div>
+                        <img src="assets/images/sct.png" alt="Scam Center Tycoon" class="project-image">
+                    </div>
 
-    <!-- FIXED: Layout below navbar -->
-    <div class="main-container">
-        <div class="sidebar">
-            <ul>
-
-                <li><a href="https://instagram.com/_chanrain" target="_blank">
-                        <i class="ri-instagram-fill"></i>
-                    </a></li>
-
-                <li><a href="https://github.com/chanra1n" target="_blank">
-                        <i class="ri-github-fill"></i>
-                    </a></li>
-
-                <li><a href="https://discordapp.com/users/750845810396364900" target="_blank">
-                        <i class="ri-discord-fill"></i>
-                    </a></li>
-
-                <li><a href="https://steamcommunity.com/id/chanrain" target="_blank">
-                        <i class="ri-steam-fill"></i>
-                    </a></li>
-
-                <li><a href="https://www.tumblr.com/chanrain" target="_blank">
-                        <i class="ri-tumblr-fill"></i>
-                    </a></li>
-
-                <li><a href="https://youtube.com/@chanra1n" target="_blank">
-                        <i class="ri-youtube-fill"></i>
-                    </a></li>
-
-            </ul>
-        </div>
-
-        <div class="content">
-
-        </div>
-
-        <img loading="lazy" id="backgroundImage" src="assets/images/white.png" />
-
-    </div>
-
-    <footer class="uk-background-secondary uk-light uk-padding">
-        <div class="uk-container">
-            <p>&copy; 2023 Your Name. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
-
-    <script>
-
-        function postProject(title, description, buttonText, buttonIcon, buttonAction, imageUrl) {
-            const contentDiv = document.querySelector('.content');
-
-            var projectHTML = `
-            <div class="project-listing">
-                <div class="project-content">
-                    <h2>${title}</h2>
-                    <hr>
-                    <p>${description}</p>
-                    <button class="uk-button" onclick="window.open('${buttonAction}')">
-                        <i class="${buttonIcon}"></i>
-                        ${buttonText}
-                    </button>
-                </div>
-                <img loading = "lazy"  src="${imageUrl}" alt="Project Image">
-            </div>
-        `;
-
-            if (buttonIcon === "ri-music-2-fill") {
-                projectHTML = `
-                        <div class="project-listing">
-                <div class="project-content">
-                    <h2>${title}</h2>
-                    <hr>
-                    <p>${description}</p>
-                    <div>
-                    <button style = "background-color:#1DB954" class="uk-button music-button"
-                    onclick = "window.open('https://open.spotify.com/artist/2ilmWHp65ySfupUOPyKRrt?si=s7jxlVawTZOjnGWa9AbYFg')">
-                        <i class="ri-spotify-fill"></i>
-                        Spotify
-                    </button>
-                    <button style = "background-color:#FA2D48" class="uk-button music-button"
-                    onclick = "window.open('https://music.apple.com/us/artist/chan-rain/1725368167')">
-                        <i class="ri-apple-fill"></i>
-                        Apple Music
-                    </button>
-                    <button style = "background-color:#EA4CC0" class="uk-button music-button"
-                    onclick = "window.open('https://music.apple.com/us/artist/chan-rain/1725368167')">
-                        <i class="ri-apple-fill"></i>
-                        iTunes
-                    </button>
-                    <button style = "background-color:#25d1da" class="uk-button music-button"
-                    onclick = "window.open('https://music.amazon.com/artists/B0CS4V5HJB/chan-rain?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_42rPW9ugbJj8dTTJ9uae3DchA')">
-                        <i class="ri-amazon-fill"></i>
-                        Amazon Music
-                    </button>
-                    <button style = "background-color:#FF0000" class="uk-button music-button"
-                    onclick = "window.open('https://music.youtube.com/channel/UCaywisLAnj_EkEi7QH-Jk-Q?si=DVrF2pu-rDoOdiDp')">
-                        <i class="ri-youtube-fill"></i>
-                        YouTube Music
-                    </button>
+                    <div class="project-card">
+                        <div class="project-info">
+                            <h3>My Music</h3>
+                            <p>Available on most platforms. Usually, when I compose music for games, I release the
+                                soundtrack as an album, along with any bonus tracks that didn't make the cut.</p>
+                            <div class="project-buttons">
+                                <a href="https://open.spotify.com/artist/2ilmWHp65ySfupUOPyKRrt" target="_blank"
+                                    class="btn btn-spotify">
+                                    <i class="ri-spotify-fill"></i>
+                                    Spotify
+                                </a>
+                                <a href="https://music.apple.com/us/artist/chan-rain/1725368167" target="_blank"
+                                    class="btn btn-apple">
+                                    <i class="ri-apple-fill"></i>
+                                    Apple Music
+                                </a>
+                                <a href="https://music.amazon.com/artists/B0CS4V5HJB/chan-rain" target="_blank"
+                                    class="btn btn-amazon">
+                                    <i class="ri-amazon-fill"></i>
+                                    Amazon Music
+                                </a>
+                                <a href="https://music.youtube.com/channel/UCaywisLAnj_EkEi7QH-Jk-Q" target="_blank"
+                                    class="btn btn-youtube">
+                                    <i class="ri-youtube-fill"></i>
+                                    YouTube Music
+                                </a>
+                            </div>
+                        </div>
+                        <img src="assets/images/pfp.jpg" alt="Chan Rain Music" class="project-image">
                     </div>
                 </div>
-                <img loading = "lazy"  src="${imageUrl}" alt="Project Image">
             </div>
-            `;
-            }
 
-            contentDiv.innerHTML += projectHTML;
-        }
-
-        // Object to store tab contents
-        const tabContent = {
-            "projects": `
-            <div id="projects-tab">
-                <h1>Current Projects</h1>
-            </div>
-        `,
-            "about": `
-            <div id="about-tab" class="about-container">
-                <div class="about-text">
-                    <h1>About Me</h1>
-                    <p>
-                        Extensive experience with web-based technologies and frameworks (both frontend and backend), and plenty of personal projects to share.
-                        I've been doing this for a while, but I'm always looking for new things to learn.
-                        <br>
-                        _
-                        <br>
-                        I'll also occasionally do music for games I'm working on - with other teams, or on my own, just for fun. If you're interested in collaborating, feel free to reach out.
-                        <br>
-                        _
-                        <br>
-                        Hoping to make a career out of any one thing you see on this website... or all of them. I'm not picky! Thanks for stopping by.
-                    </p>
-                </div>
-            </div>
-        `,
-            "contact": `
-            <div id="contact-tab">
-                <h1>Contact</h1>
+            <!-- About Tab -->
+            <div id="about" class="page-content">
+                <h1 class="page-title">About Me</h1>
+                <div class="about-content">
                     <div class="about-text">
                         <p>
-                            If you're interested in collaborating on a project, or just want to chat, feel free to reach out to me on any of the platforms listed below.
+                            Extensive experience with web-based technologies and frameworks (both frontend and backend),
+                            and plenty of personal projects to share.
+                            I've been doing this for a while, but I'm always looking for new things to learn.
+                        </p>
+                        <p>
+                            I'll also occasionally do music for games I'm working on - with other teams, or on my own,
+                            just for fun. If you're interested in collaborating, feel free to reach out.
+                        </p>
+                        <p>
+                            Hoping to make a career out of any one thing you see on this website... or all of them. I'm
+                            not picky! Thanks for stopping by.
                         </p>
                     </div>
+                    <img src="assets/images/white.png" alt="About Chan Rain" class="about-image">
+                </div>
             </div>
-        `
-        };
 
-        function swapTabs(tabName) {
-            // Get all navbar items and remove 'active' class
-            document.querySelectorAll('.uk-navbar-nav li').forEach(tab => tab.classList.remove('active'));
+            <!-- Contact Tab -->
+            <div id="contact" class="page-content">
+                <h1 class="page-title">Contact</h1>
+                <div class="contact-content">
+                    <div class="contact-text">
+                        <p>
+                            If you're interested in collaborating on a project, or just want to chat, feel free to reach
+                            out to me on any of the platforms listed below.
+                        </p>
+                        <p>
+                            I'm always open to new opportunities and interesting conversations. Whether it's web
+                            development, game development, music composition, or just a friendly chat about technology
+                            and creativity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-            // Set active tab
-            document.querySelectorAll('.uk-navbar-nav li').forEach(tab => {
-                if (tab.querySelector('a').getAttribute('onclick').includes(tabName)) {
-                    tab.classList.add('active');
-                }
-            });
-
-            // Swap content
-            document.querySelector('.content').innerHTML = tabContent[tabName];
-
-            // Add projects if it's the projects tab
-            if (tabName === "projects") {
-                postProject(
-                    "SCAM CENTER TYCOON",
-                    "RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev meets game dev, on steroids. Enjoy.",
-                    "PLAY NOW",
-                    "ri-gamepad-fill",
-                    "https://scamcentertycoon.com",
-                    "assets/images/sct.png"
-                );
-                postProject(
-                    "My Music",
-                    "Available on most platforms. Usually, when I compose music for games, I release the soundtrack as an album, along with any bonus tracks that didn't make the cut.",
-                    "LISTEN NOW",
-                    "ri-music-2-fill",
-                    "",
-                    "assets/images/pfp.jpg"
-                );
-
-                document.getElementById('backgroundImage').style.display = "block";
-
-            }
-        }
-
-        function initTippy() {
-    var usernames = {
-        "instagram": "@_chanrain",
-        "github": "@chanra1n",
-        "discord": "@chanrain",
-        "steam": "@chanrain",
-        "linkedin": "@chanmrotzek",
-        "tumblr": "@chanrain",
-        "youtube": "@chanra1n" 
-    };
-
-    document.querySelectorAll('.sidebar ul li').forEach((item) => {
-        const innerHTML = item.innerHTML.toLowerCase(); // Get innerHTML and lowercase
-
-        for (const platform in usernames) {
-            if (innerHTML.includes(platform)) {
-                tippy(item, {
-                    content: usernames[platform],
-                    placement: 'right',
-                    duration: 200,
-                    delay: [0, 100],
-                    arrow: true,
-                    offset: [0, 10],
-                    interactive: true,
-                    trigger: 'mouseenter focus',
-                    allowHTML: true
-                });
-                return; // Exit loop after finding a match
-            }
-        }
-    });
-}
-
-            swapTabs('projects');
-            initTippy();
-    </script>
-
-
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
