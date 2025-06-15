@@ -131,3 +131,79 @@ window.addEventListener('focus', function () {
 window.addEventListener('beforeunload', function () {
     if (particleSystem) particleSystem.stop();
 });
+
+// Holographic shimmer effect on scroll and device tilt
+(function () {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    let shimmerTimeout = null;
+
+    function setShimmerTransform(x = 0, y = 0) {
+        document.body.style.setProperty('--shimmer-x', x + 'deg');
+        document.body.style.setProperty('--shimmer-y', y + 'deg');
+        document.body.style.setProperty('--shimmer-translate-x', x + 'px');
+        document.body.style.setProperty('--shimmer-translate-y', y + 'px');
+        document.body.style.setProperty('--shimmer-opacity', '0.95');
+        document.body.classList.add('shimmer-active');
+        // Remove shimmer after a short delay
+        if (shimmerTimeout) clearTimeout(shimmerTimeout);
+        shimmerTimeout = setTimeout(() => {
+            document.body.classList.remove('shimmer-active');
+            document.body.style.setProperty('--shimmer-opacity', '0.7');
+        }, 400);
+    }
+
+    // Scroll shimmer
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                const scrollY = window.scrollY;
+                const dx = 0;
+                const dy = (scrollY - lastScrollY) * 0.7;
+                setShimmerTransform(dx, dy);
+                lastScrollY = scrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Device tilt shimmer
+    window.addEventListener('deviceorientation', function (event) {
+        // gamma: left/right, beta: front/back
+        const gamma = event.gamma || 0;
+        const beta = event.beta || 0;
+        // Clamp for effect
+        const x = Math.max(-30, Math.min(30, gamma)) * 1.5;
+        const y = Math.max(-30, Math.min(30, beta - 45)) * 1.5;
+        setShimmerTransform(x, y);
+    }, true);
+
+    // Apply shimmer effect to body::after
+    function updateShimmerCSS() {
+        const styleId = 'holo-shimmer-style';
+        let style = document.getElementById(styleId);
+        if (!style) {
+            style = document.createElement('style');
+            style.id = styleId;
+            document.head.appendChild(style);
+        }
+        style.textContent = `
+            body::after {
+                opacity: var(--shimmer-opacity, 0.7);
+                transform:
+                    translateX(var(--shimmer-translate-x, 0px))
+                    translateY(var(--shimmer-translate-y, 0px))
+                    rotateX(var(--shimmer-x, 0deg))
+                    rotateY(var(--shimmer-y, 0deg));
+                transition:
+                    opacity 0.2s,
+                    transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+            }
+            body.shimmer-active::after {
+                opacity: var(--shimmer-opacity, 0.95);
+            }
+        `;
+    }
+    updateShimmerCSS();
+})();
