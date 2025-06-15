@@ -87,6 +87,7 @@ function closeNavMenuWithAnimation() {
 function initTooltips() {
     tippy('[data-tippy-content]', {
         placement: 'right',
+        placement: 'right',
         duration: 300,
         delay: [500, 200],
         offset: [0, 15],
@@ -96,7 +97,6 @@ function initTooltips() {
 
 document.addEventListener('DOMContentLoaded', function () {
     particleSystem = new ParticleSystem();
-    initTooltips();
     setInterval(() => {
         if (particleSystem) particleSystem.cleanup();
     }, 20000);
@@ -132,56 +132,18 @@ window.addEventListener('beforeunload', function () {
     if (particleSystem) particleSystem.stop();
 });
 
-// Holographic shimmer effect on scroll and device tilt
+// Rainbow gradient color shifting on scroll and device tilt (fluid & dynamic)
 (function () {
+    let tiltX = 0, tiltY = 0;
+    let lastHue = 0, lastSat = 1;
     let lastScrollY = window.scrollY;
-    let ticking = false;
-    let shimmerTimeout = null;
 
-    function setShimmerTransform(x = 0, y = 0) {
-        document.body.style.setProperty('--shimmer-x', x + 'deg');
-        document.body.style.setProperty('--shimmer-y', y + 'deg');
-        document.body.style.setProperty('--shimmer-translate-x', x + 'px');
-        document.body.style.setProperty('--shimmer-translate-y', y + 'px');
-        document.body.style.setProperty('--shimmer-opacity', '0.95');
-        document.body.classList.add('shimmer-active');
-        // Remove shimmer after a short delay
-        if (shimmerTimeout) clearTimeout(shimmerTimeout);
-        shimmerTimeout = setTimeout(() => {
-            document.body.classList.remove('shimmer-active');
-            document.body.style.setProperty('--shimmer-opacity', '0.7');
-        }, 400);
-    }
-
-    // Scroll shimmer
-    window.addEventListener('scroll', function () {
-        if (!ticking) {
-            window.requestAnimationFrame(function () {
-                const scrollY = window.scrollY;
-                const dx = 0;
-                const dy = (scrollY - lastScrollY) * 0.7;
-                setShimmerTransform(dx, dy);
-                lastScrollY = scrollY;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    // Device tilt shimmer
-    window.addEventListener('deviceorientation', function (event) {
-        // gamma: left/right, beta: front/back
-        const gamma = event.gamma || 0;
-        const beta = event.beta || 0;
-        // Clamp for effect
-        const x = Math.max(-30, Math.min(30, gamma)) * 1.5;
-        const y = Math.max(-30, Math.min(30, beta - 45)) * 1.5;
-        setShimmerTransform(x, y);
-    }, true);
-
-    // Apply shimmer effect to body::after
-    function updateShimmerCSS() {
-        const styleId = 'holo-shimmer-style';
+    function setGradientHue(hue = 0, sat = 1) {
+        hue = Math.round(hue) % 360;
+        sat = Math.max(0.7, Math.min(1.3, sat));
+        if (hue === lastHue && sat === lastSat) return;
+        lastHue = hue; lastSat = sat;
+        const styleId = 'rainbow-gradient-hue-style';
         let style = document.getElementById(styleId);
         if (!style) {
             style = document.createElement('style');
@@ -189,21 +151,46 @@ window.addEventListener('beforeunload', function () {
             document.head.appendChild(style);
         }
         style.textContent = `
-            body::after {
-                opacity: var(--shimmer-opacity, 0.7);
-                transform:
-                    translateX(var(--shimmer-translate-x, 0px))
-                    translateY(var(--shimmer-translate-y, 0px))
-                    rotateX(var(--shimmer-x, 0deg))
-                    rotateY(var(--shimmer-y, 0deg));
-                transition:
-                    opacity 0.2s,
-                    transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
-            }
-            body.shimmer-active::after {
-                opacity: var(--shimmer-opacity, 0.95);
+            body::before {
+                filter: hue-rotate(${hue}deg) saturate(${sat});
+                transition: filter 0.12s cubic-bezier(.4,0,.2,1);
             }
         `;
     }
-    updateShimmerCSS();
+
+    // Make color shift fluid and dynamic to scroll velocity and direction
+    let lastFrame = performance.now();
+    let velocity = 0;
+    let lastScroll = window.scrollY;
+
+    function animate() {
+        const now = performance.now();
+        const scrollY = window.scrollY;
+        const dt = Math.max(1, now - lastFrame);
+        // Calculate velocity (pixels/ms)
+        velocity = (scrollY - lastScroll) / dt;
+        lastScroll = scrollY;
+        lastFrame = now;
+
+        // Use velocity and tilt for hue/sat
+        const baseHue = (scrollY * 0.25 + tiltX * 1.5 + tiltY * 0.5) % 360;
+        // Add a velocity-based offset for dynamic color shifting
+        const hue = (baseHue + velocity * 180) % 360;
+        const sat = 1 + Math.min(0.3, Math.abs(velocity) * 2) + Math.abs(tiltY) / 120;
+
+        setGradientHue(hue, sat);
+
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // Device tilt: shift hue and saturation based on device orientation
+    window.addEventListener('deviceorientation', function (event) {
+        const gamma = event.gamma || 0;
+        const beta = event.beta || 0;
+        tiltX = Math.max(-30, Math.min(30, gamma));
+        tiltY = Math.max(-30, Math.min(30, beta - 45));
+    }, true);
+
+    setGradientHue(0, 1);
 })();
