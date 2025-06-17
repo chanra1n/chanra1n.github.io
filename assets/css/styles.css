@@ -108,7 +108,7 @@
 }
 
 .header-content {
-    max-width: 1200px;
+    max-width: calc(100% - 1rem);
     margin: 0 auto;
     padding: 0 1rem;
     display: flex;
@@ -353,7 +353,15 @@ nav {
             max-height: calc(100vh - 120px);
             width: 100%;
             min-width: 0;
+            overflow-x: clip; /* Hide horizontal overflow, but allow visible overflow for children */
         }
+
+        /* Prevent horizontal scrollbar during pop-in animations */
+        @supports not (overflow-x: clip) {
+    .content {
+        overflow-x: hidden;
+    }
+}
 
         .content:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -553,8 +561,8 @@ nav {
         }
 
         .project-image {
-            width: 140px;
-            height: 140px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             border-radius: var(--border-radius);
             border: 1px solid var(--glass-border);
@@ -1200,7 +1208,7 @@ nav {
     }
 
     .content {
-    max-width: 1200px;
+    max-width: fit-content;
     margin: 0 auto;
     padding: 2.5rem;
     max-height: calc(100vh - 4rem);
@@ -1210,7 +1218,7 @@ nav {
     border: none;
     box-shadow: none;
     padding: 0px;
-    overflow-x: hidden;
+    overflow-x: clip;
     }
 
     .content:hover {
@@ -1298,11 +1306,6 @@ nav {
     .social-sidebar-toggle {
         display: none !important;
     }
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
