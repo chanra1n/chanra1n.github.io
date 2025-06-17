@@ -962,75 +962,61 @@ nav {
     90% { opacity: 1; filter: brightness(2.1) blur(0.1px);}
 }
 
-/* Ultra-smooth, subtle squash and stretch (bubble pop) animations for tabs and menus */
+/* Fluid, modern UI pop-in/out animations */
 @keyframes bubblePopIn {
     0% {
         opacity: 0;
-        transform: scale(0.98, 1.01) translateY(15px); /* Reduced scale and Y translation */
+        transform: translateY(24px) scale(0.98);
     }
-    60% { /* Adjusted timing for a smoother overshoot */
+    60% {
         opacity: 1;
-        transform: scale(1.005, 0.995) translateY(-2px); /* Reduced overshoot */
-    }
-    80% {
-        transform: scale(0.995, 1.005) translateY(1px); /* Reduced undershoot */
+        transform: translateY(-4px) scale(1.01);
     }
     100% {
         opacity: 1;
-        transform: scale(1, 1) translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 @keyframes bubblePopOut {
     0% {
         opacity: 1;
-        transform: scale(1, 1) translateY(0);
+        transform: translateY(0) scale(1);
     }
-    40% {
-        opacity: 0.8; /* Slightly less opacity drop */
-        transform: scale(1.005, 0.995) translateY(3px); /* Reduced overshoot */
-    }
-    80% {
+    60% {
         opacity: 0.2;
-        transform: scale(0.98, 1.01) translateY(12px); /* Reduced scale and Y translation */
+        transform: translateY(16px) scale(0.98);
     }
     100% {
         opacity: 0;
-        transform: scale(0.98, 1.01) translateY(15px); /* Reduced scale and Y translation */
+        transform: translateY(32px) scale(0.97);
     }
 }
 @keyframes navMenuPopIn {
     0% {
         opacity: 0;
-        transform: scale(0.98, 1.01) translateY(-12px); /* Reduced scale and Y translation */
+        transform: translateY(-18px) scale(0.98);
     }
     60% {
         opacity: 1;
-        transform: scale(1.005, 0.995) translateY(2px); /* Reduced overshoot */
-    }
-    80% {
-        transform: scale(0.995, 1.005) translateY(-0.5px); /* Reduced undershoot */
+        transform: translateY(3px) scale(1.01);
     }
     100% {
         opacity: 1;
-        transform: scale(1, 1) translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 @keyframes navMenuPopOut {
     0% {
         opacity: 1;
-        transform: scale(1, 1) translateY(0);
+        transform: translateY(0) scale(1);
     }
-    40% {
-        opacity: 0.8;
-        transform: scale(1.005, 0.995) translateY(-3px); /* Reduced overshoot */
-    }
-    80% {
+    60% {
         opacity: 0.2;
-        transform: scale(0.98, 1.01) translateY(-10px); /* Reduced scale and Y translation */
+        transform: translateY(-12px) scale(0.98);
     }
     100% {
         opacity: 0;
-        transform: scale(0.98, 1.01) translateY(-12px); /* Reduced scale and Y translation */
+        transform: translateY(-24px) scale(0.97);
     }
 }
 
@@ -1312,6 +1298,20 @@ nav {
     .social-sidebar-toggle {
         display: none !important;
     }
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
