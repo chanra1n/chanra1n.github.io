@@ -270,7 +270,8 @@ nav {
 /* Main Layout */
         .main-layout {
             display: grid;
-            grid-template-columns: auto 1fr;
+            /* grid-template-columns: auto 1fr; */ /* Default for mobile-first, overridden for desktop */
+            grid-template-columns: 1fr; /* Mobile default: single column */
             min-height: calc(100vh - 80px);
             gap: 1rem;
             padding: 1rem;
@@ -389,26 +390,26 @@ nav {
         .project-grid {
             display: grid;
             gap: 1rem;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* Mobile default: single column */
             width: 100%;
         }
 
         .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--blur-amount));
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-glass);
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            transition: var(--transition-smooth);
-            position: relative;
-            width: 100%;
-            min-width: 0;
-            text-align: left;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-glass);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
         }
 
         .project-card::before {
@@ -447,10 +448,12 @@ nav {
         }
 
         .project-buttons {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            width: 100%;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    width: 100%;
+    font-weight: 900;
+    border-radius: var(--border-radius-pill);
         }
 
         .btn, .nav-link {
@@ -505,6 +508,7 @@ nav {
     width: 100%;
     text-align: center;
     pointer-events: none;
+    margin-left: 1rem;
 }
 
         .btn::before, .nav-link::before {
@@ -962,14 +966,14 @@ nav {
 @keyframes bubblePopIn {
     0% {
         opacity: 0;
-        transform: scale(0.96, 1.04) translateY(32px);
+        transform: scale(0.98, 1.01) translateY(15px); /* Reduced scale and Y translation */
     }
-    50% {
+    60% { /* Adjusted timing for a smoother overshoot */
         opacity: 1;
-        transform: scale(1.015, 0.985) translateY(-3px);
+        transform: scale(1.005, 0.995) translateY(-2px); /* Reduced overshoot */
     }
-    70% {
-        transform: scale(0.99, 1.01) translateY(1px);
+    80% {
+        transform: scale(0.995, 1.005) translateY(1px); /* Reduced undershoot */
     }
     100% {
         opacity: 1;
@@ -982,29 +986,29 @@ nav {
         transform: scale(1, 1) translateY(0);
     }
     40% {
-        opacity: 0.7;
-        transform: scale(1.015, 0.985) translateY(7px);
+        opacity: 0.8; /* Slightly less opacity drop */
+        transform: scale(1.005, 0.995) translateY(3px); /* Reduced overshoot */
     }
     80% {
-        opacity: 0.3;
-        transform: scale(0.96, 1.04) translateY(24px);
+        opacity: 0.2;
+        transform: scale(0.98, 1.01) translateY(12px); /* Reduced scale and Y translation */
     }
     100% {
         opacity: 0;
-        transform: scale(0.96, 1.04) translateY(32px);
+        transform: scale(0.98, 1.01) translateY(15px); /* Reduced scale and Y translation */
     }
 }
 @keyframes navMenuPopIn {
     0% {
         opacity: 0;
-        transform: scale(0.96, 1.04) translateY(-24px);
+        transform: scale(0.98, 1.01) translateY(-12px); /* Reduced scale and Y translation */
     }
-    50% {
+    60% {
         opacity: 1;
-        transform: scale(1.015, 0.985) translateY(4px);
+        transform: scale(1.005, 0.995) translateY(2px); /* Reduced overshoot */
     }
-    70% {
-        transform: scale(0.99, 1.01) translateY(-1px);
+    80% {
+        transform: scale(0.995, 1.005) translateY(-0.5px); /* Reduced undershoot */
     }
     100% {
         opacity: 1;
@@ -1017,16 +1021,16 @@ nav {
         transform: scale(1, 1) translateY(0);
     }
     40% {
-        opacity: 0.7;
-        transform: scale(1.015, 0.985) translateY(-6px);
+        opacity: 0.8;
+        transform: scale(1.005, 0.995) translateY(-3px); /* Reduced overshoot */
     }
     80% {
-        opacity: 0.3;
-        transform: scale(0.96, 1.04) translateY(-18px);
+        opacity: 0.2;
+        transform: scale(0.98, 1.01) translateY(-10px); /* Reduced scale and Y translation */
     }
     100% {
         opacity: 0;
-        transform: scale(0.96, 1.04) translateY(-24px);
+        transform: scale(0.98, 1.01) translateY(-12px); /* Reduced scale and Y translation */
     }
 }
 
@@ -1063,7 +1067,8 @@ nav {
     box-shadow: none;
     transition: var(--transition-smooth);
     font-family: var(--font-primary);
-    font-weight: 900;;
+    font-weight: 900;
+    min-width: 250px;
 }
 
 /* ACTIVE STATE: Only for the current tab */
@@ -1076,17 +1081,6 @@ nav {
     z-index: 1;
 }
 
-/* DESKTOP HOVER FEEDBACK */
-@media (hover: hover) and (pointer: fine) {
-    .nav-item:hover:not(.active),
-    .nav-link:hover:not(.active) {
-        background: rgba(255,255,255,0.18);
-        color: #fff;
-        box-shadow: var(--shadow-glass);
-        transform: scale(1.05);
-        z-index: 1;
-    }
-}
 
 /* MOBILE/TABLET TAP FEEDBACK (NO STICKY HIGHLIGHT) */
 @media (hover: none), (pointer: coarse) {
@@ -1207,3 +1201,130 @@ nav {
 .page-content.active .project-card {
     opacity: 1;
 }
+
+/* Desktop: Social sidebar fixed, left side, vertically centered */
+@media (min-width: 769px) {
+    .main-layout {
+        grid-template-columns: 1fr; /* Content area takes full width after left padding */
+        padding-left: calc(70px + 1.5rem + 2rem); /* sidebar width + sidebar left offset + desired gap */
+        padding-right: 2rem; /* General right padding */
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        gap: 2rem; /* Increase gap for desktop if needed */
+    }
+
+    .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    background-color: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0px;
+    overflow-x: hidden;
+    }
+
+    .content:hover {
+        background: transparent;
+        transform: none;
+    }
+
+    .page-title {
+    font-size: 1rem;
+    text-align: left;
+    opacity: 50%;
+    margin-bottom: 0.75rem;
+    margin-left: 0.25rem;
+    background: transparent;
+    -webkit-text-fill-color: inherit;
+    backdrop-filter: none;
+    border: none;
+    background-color: transparent;
+    width: fit-content;
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* 2-3 columns for projects */
+        gap: 1.5rem; /* Increased gap for project cards */
+    }
+
+    .about-content {
+        /* The 2fr 1fr structure is fine, max-width on .content will handle overall width */
+        gap: 2.5rem; /* Increase gap in about section */
+    }
+
+    .contact-content {
+        max-width: 700px; /* Slightly wider contact form area if desired */
+    }
+
+    .btn, .nav-link {
+    border-radius: var(--border-radius-pill);
+    }
+
+    .nav-item:hover, .nav-link:hover {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--blur-amount));
+        border: 1px solid var(--glass-border);
+        color: var(--primary-text);
+        transform: none!important;
+    }
+
+    .social-sidebar {
+        position: fixed !important;
+        left: 1.5rem;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        transform: translateY(-50%);
+        width: 70px;
+        max-height: 80vh;
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: var(--border-radius-pill);
+        padding: 1rem 0.6rem;
+        box-shadow: var(--shadow-glass);
+        /* Remove mobile-specific outline, gap, etc. */
+        outline: none;
+        gap: 0.8rem;
+    }
+    .social-sidebar .social-links-container {
+        flex-direction: column;
+        /* gap: 0.8rem; */ /* Removed in favor of margin on items */
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-width: none;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        transition: none;
+    }
+    /* Add margin to social link items for spacing on desktop */
+    .social-sidebar .social-links-container .social-link-item {
+        margin-bottom: 0.8rem;
+    }
+    .social-sidebar .social-links-container .social-link-item:last-child {
+        margin-bottom: 0; /* No margin for the last item to prevent extra space at the end */
+    }
+    .social-sidebar-toggle {
+        display: none !important;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
