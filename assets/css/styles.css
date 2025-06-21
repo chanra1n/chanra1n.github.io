@@ -699,16 +699,16 @@ nav {
             .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.4s; }
 
             .nav-link {
-                color: var(--primary-text); /* DARK text for high contrast */
-                font-size: 1.5rem;
-                font-weight: 700;
-                padding: 1rem;
-                border-radius: var(--border-radius-pill);
-                justify-content: center;
-                /* Lighter, more opaque background for the button itself */
-                background: rgba(255, 255, 255, 0.4);
-                border: 2px solid rgba(255, 255, 255, 0.5);
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--primary-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-pill);
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding-left: 1.75rem;
             }
 
             .nav-link:hover {
@@ -936,6 +936,7 @@ nav {
     font-weight: 900;
     border-radius: var(--border-radius-pill);
     font-family: var(--font-primary);
+    padding-left: 1.75rem;
             }
 
             .social-sidebar.sidebar-expanded,
