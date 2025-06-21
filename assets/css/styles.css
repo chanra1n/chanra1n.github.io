@@ -8,6 +8,7 @@
     /* Core Palette */
     --primary-bg: #a1b1c4; /* Brighter misty blue */
     --primary-text: #3a4a58; /* Dark text for light backgrounds */
+    --secondary-text: #5a6a78; /* Slightly lighter text for secondary info */
     --accent-color: #cad5e0; /* Lighter misty blue for accents */
 
     /* Glassmorphism */
@@ -29,6 +30,10 @@
     /* Animation */
     --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Decipher Effect Fonts */
+    --primary-font-1: 'alterna', monospace;
+    --primary-font-2: var(--font-primary);
 }
 
 * {
@@ -92,6 +97,7 @@ body::after {
     background: var(--glass-bg);
     box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
     border-bottom: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
 
@@ -158,6 +164,7 @@ nav {
 
 .nav-item {
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius-pill);
@@ -186,6 +193,7 @@ nav {
     box-shadow: var(--shadow-elevated);
     /* Remove transform so it doesn't stack with hover */
     transform: none;
+    z-index: 1;
         }
 
         .nav-link {
@@ -268,6 +276,7 @@ nav {
         /* Social Sidebar */
         .social-sidebar {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius-pill);
@@ -293,6 +302,7 @@ nav {
             width: 50px;
             height: 50px;
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             color: var(--primary-text);
@@ -329,6 +339,7 @@ nav {
         /* Content Area */
         .content {
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -386,6 +397,7 @@ nav {
 
         .project-card {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
@@ -447,6 +459,7 @@ nav {
 
         .btn, .nav-link {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     color: var(--primary-text);
@@ -481,6 +494,7 @@ nav {
     border-radius: 50%;
     font-weight: 100;
     background: rgba(255,255,255,0.18);
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
     border: 1px solid rgba(255,255,255,0.25);
@@ -564,6 +578,7 @@ nav {
 
         .about-text {
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -593,6 +608,7 @@ nav {
 
         .contact-text {
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -765,6 +781,7 @@ nav {
                 width: 50px;
                 height: 50px;
                 background: var(--glass-bg);
+                -webkit-backdrop-filter: blur(var(--blur-amount));
                 backdrop-filter: blur(var(--blur-amount));
                 border: 1px solid var(--glass-border);
                 color: var(--primary-text);
@@ -862,7 +879,7 @@ nav {
     font-size: 1rem;
     margin: -0.5rem;
     margin-bottom: 0.5rem;
-    color: var(--secondary-text);
+    color: var(--primary-text);
             }
 
             .project-card {
@@ -924,6 +941,7 @@ nav {
         /* Tooltip Styles */
         .tippy-box {
             background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--blur-amount));
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             color: var(--primary-text);
@@ -1102,48 +1120,6 @@ nav {
     font-family: var(--primary-font-2);
 }
 
-/* NAVIGATION BUTTONS: RESET DEFAULTS */
-.nav-item,
-.nav-link {
-    background: none;
-    color: var(--primary-text);
-    box-shadow: none;
-    transition: var(--transition-smooth);
-    font-family: var(--font-primary);
-    font-weight: 900;
-    min-width: 250px;
-}
-
-/* ACTIVE STATE: Only for the current tab */
-.nav-item.active,
-.nav-link.active {
-    background: rgba(255,255,255,0.3);
-    color: #fff !important;
-    box-shadow: var(--shadow-elevated);
-    transform: none;
-    z-index: 1;
-}
-
-
-/* MOBILE/TABLET TAP FEEDBACK (NO STICKY HIGHLIGHT) */
-@media (hover: none), (pointer: coarse) {
-    .nav-item:active:not(.active),
-    .nav-link:active:not(.active) {
-        background: rgba(255,255,255,0.18);
-        color: #fff;
-        box-shadow: var(--shadow-glass);
-        /* No transform for tap */
-    }
-    .nav-item:hover,
-    .nav-link:hover {
-        /* Prevent hover from sticking on mobile */
-        background: none;
-        color: var(--primary-text);
-        box-shadow: none;
-        transform: none;
-    }
-}
-
 /* --- PAGE POP-IN ANIMATION --- */
 .page-pop-animate {
     opacity: 0;
@@ -1198,21 +1174,25 @@ nav {
 /* Platform-specific glass gradients */
 .music-icon.spotify {
     background: linear-gradient(135deg, rgba(29,185,84,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0s;
 }
 .music-icon.apple {
     background: linear-gradient(135deg, rgba(250,45,72,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0.4s;
 }
 .music-icon.amazon {
     background: linear-gradient(135deg, rgba(37,209,218,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0.8s;
 }
 .music-icon.youtube {
     background: linear-gradient(135deg, rgba(255,0,0,0.6) 60%, rgba(255,255,255,0.125) 100%);
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 1.2s;
 }
@@ -1315,6 +1295,7 @@ nav {
 
     .nav-item:hover, .nav-link:hover {
         background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(var(--blur-amount));
         backdrop-filter: blur(var(--blur-amount));
         border: 1px solid var(--glass-border);
         color: var(--primary-text);
