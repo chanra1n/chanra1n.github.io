@@ -729,11 +729,39 @@ nav {
             }
 
             .nav-link i {
-                display: none; /* Hide icons in this new menu layout */
+                /* --- REFORMAT FOR MOBILE MENU --- */
+                position: absolute; /* Take icon out of flow */
+                left: 1rem; /* Position on the left */
+                top: 50%;
+                transform: translateY(-50%); /* Center vertically */
+                display: flex; /* Use flex to center the icon inside the circle */
+                align-items: center;
+                justify-content: center;
+
+                /* Sizing */
+                width: 2em;   /* Use em for sizing relative to font-size */
+                height: 2em;
+                font-size: 1.1rem; /* Control the icon's container size */
+                flex-shrink: 0; /* Prevent the icon from shrinking */
+
+                /* Re-apply glass styling from desktop buttons */
+                border-radius: 50%;
+                font-weight: 100;
+                background: rgba(255,255,255,0.18);
+                -webkit-backdrop-filter: blur(6px);
+                backdrop-filter: blur(6px);
+                box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+                border: 1px solid rgba(255,255,255,0.25);
+                transition: background 0.2s, box-shadow 0.2s;
+                pointer-events: none;
             }
 
             .nav-link span {
+                width: 100%;
+                text-align: center;
                 margin: 0; /* Reset margin */
+                /* Add padding to ensure text doesn't overlap with the absolute-positioned icon */
+                padding: 0 2rem;
             }
 
             .main-layout {
