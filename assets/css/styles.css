@@ -164,7 +164,7 @@ nav {
 
 .nav-item {
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius-pill);
@@ -276,7 +276,7 @@ nav {
         /* Social Sidebar */
         .social-sidebar {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius-pill);
@@ -302,7 +302,7 @@ nav {
             width: 50px;
             height: 50px;
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             color: var(--primary-text);
@@ -339,7 +339,7 @@ nav {
         /* Content Area */
         .content {
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -397,7 +397,7 @@ nav {
 
         .project-card {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
@@ -459,7 +459,7 @@ nav {
 
         .btn, .nav-link {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     color: var(--primary-text);
@@ -578,7 +578,7 @@ nav {
 
         .about-text {
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -608,7 +608,7 @@ nav {
 
         .contact-text {
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
@@ -781,7 +781,7 @@ nav {
                 width: 50px;
                 height: 50px;
                 background: var(--glass-bg);
-                -webkit-backdrop-filter: blur(var(--blur-amount));
+                -webkit-backdrop-filter: blur(15px);
                 backdrop-filter: blur(var(--blur-amount));
                 border: 1px solid var(--glass-border);
                 color: var(--primary-text);
@@ -941,7 +941,7 @@ nav {
         /* Tooltip Styles */
         .tippy-box {
             background: var(--glass-bg);
-            -webkit-backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(var(--blur-amount));
             border: 1px solid var(--glass-border);
             color: var(--primary-text);
@@ -1174,25 +1174,25 @@ nav {
 /* Platform-specific glass gradients */
 .music-icon.spotify {
     background: linear-gradient(135deg, rgba(29,185,84,0.6) 60%, rgba(255,255,255,0.125) 100%);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0s;
 }
 .music-icon.apple {
     background: linear-gradient(135deg, rgba(250,45,72,0.6) 60%, rgba(255,255,255,0.125) 100%);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0.4s;
 }
 .music-icon.amazon {
     background: linear-gradient(135deg, rgba(37,209,218,0.6) 60%, rgba(255,255,255,0.125) 100%);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 0.8s;
 }
 .music-icon.youtube {
     background: linear-gradient(135deg, rgba(255,0,0,0.6) 60%, rgba(255,255,255,0.125) 100%);
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
     animation-delay: 1.2s;
 }
@@ -1295,7 +1295,7 @@ nav {
 
     .nav-item:hover, .nav-link:hover {
         background: var(--glass-bg);
-        -webkit-backdrop-filter: blur(var(--blur-amount));
+        -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(var(--blur-amount));
         border: 1px solid var(--glass-border);
         color: var(--primary-text);
