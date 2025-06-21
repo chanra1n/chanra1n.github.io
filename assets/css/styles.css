@@ -532,8 +532,8 @@ nav {
 
 .info-section {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     align-items: start;
     width: 100%;
     min-width: 0;
@@ -542,8 +542,8 @@ nav {
 .info-text {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-glass);
-    padding: 2rem;
-    font-size: 1.1rem;
+    padding: 1.5rem;
+    font-size: 1rem;
     transition: var(--transition-smooth);
     min-width: 0;
     /* --- FALLBACK FIRST --- */
@@ -701,7 +701,7 @@ nav {
             .nav-link {
     color: var(--primary-text);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 900;
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius-pill);
     justify-content: center;
@@ -911,18 +911,8 @@ nav {
                 font-size: 0.95rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
             .about-image {
                 height: 220px;
-            }
-
-            .about-text, .contact-text {
-                padding: 1.5rem;
-                font-size: 1rem;
             }
 
             .project-buttons {
@@ -1327,19 +1317,22 @@ nav {
         gap: 1.5rem; /* Increased gap for project cards */
     }
 
-    .about-content {
-        /* The 2fr 1fr structure is fine, max-width on .content will handle overall width */
-        gap: 2.5rem; /* Increase gap in about section */
+    .info-section {
+        max-width: 800px;
+        margin: 0 auto;
+        gap: 2rem;
     }
 
-    .contact-content {
-        max-width: 700px; /* Slightly wider contact form area if desired */
+    .info-text {
+        padding: 2rem;
+        font-size: 1.1rem;
     }
 
     .btn, .nav-link {
     border-radius: var(--border-radius-pill);
     font-size: 1rem;
     padding: 0.5rem;
+    font-weight: 900;
     }
 
     .nav-item:hover, .nav-link:hover, .btn:hover {
