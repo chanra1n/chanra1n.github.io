@@ -210,6 +210,7 @@ nav {
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
     border: 1px solid var(--glass-border);
+    min-width: 250px;
 }
 
 /* --- NAV ITEM/LINK HOVER & ACTIVE --- */
