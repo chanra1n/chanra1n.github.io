@@ -209,8 +209,9 @@ nav {
     border-radius: var(--border-radius-pill)!important;
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     min-width: 250px;
+    font-weight: 900;
 }
 
 /* --- NAV ITEM/LINK HOVER & ACTIVE --- */
@@ -243,7 +244,7 @@ nav {
     background: var(--glass-bg);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     border-radius: var(--border-radius-pill);
     padding: 1rem 0.6rem;
     display: flex;
@@ -269,7 +270,7 @@ nav {
     background: var(--glass-bg);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(var(--blur-amount));
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     color: var(--primary-text);
     text-decoration: none;
     border-radius: var(--border-radius-circle);
@@ -280,7 +281,7 @@ nav {
     flex-shrink: 0;
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .social-link::before {
@@ -316,7 +317,7 @@ nav {
     overflow-x: clip; /* Hide horizontal overflow, but allow visible overflow for children */
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     border-radius: var(--border-radius);
 }
 
@@ -378,7 +379,7 @@ nav {
     text-align: left;
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .project-card::before {
@@ -442,7 +443,7 @@ nav {
     text-transform: uppercase;
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .btn i, .nav-link i {
@@ -463,7 +464,7 @@ nav {
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 2px solid rgba(255,255,255,0.25);
     transition: background 0.2s, box-shadow 0.2s;
 }
 
@@ -527,7 +528,7 @@ nav {
     height: 128px;
     object-fit: cover;
     border-radius: var(--border-radius);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     transition: var(--transition-smooth);
     box-shadow: var(--shadow-glass);
     flex-shrink: 0;
@@ -551,7 +552,7 @@ nav {
     min-width: 0;
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .about-image {
@@ -559,7 +560,7 @@ nav {
     height: 350px;
     object-fit: cover;
     border-radius: var(--border-radius);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     box-shadow: var(--shadow-glass);
     transition: var(--transition-smooth);
 }
@@ -578,7 +579,7 @@ nav {
     transition: var(--transition-smooth);
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .contact-text:hover {
@@ -719,7 +720,7 @@ nav {
                 justify-content: center;
                 /* Lighter, more opaque background for the button itself */
                 background: rgba(255, 255, 255, 0.4);
-                border: 1px solid rgba(255, 255, 255, 0.5);
+                border: 2px solid rgba(255, 255, 255, 0.5);
                 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             }
 
@@ -752,7 +753,7 @@ nav {
                 -webkit-backdrop-filter: blur(6px);
                 backdrop-filter: blur(6px);
                 box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
-                border: 1px solid rgba(255,255,255,0.25);
+                border: 2px solid rgba(255,255,255,0.25);
                 transition: background 0.2s, box-shadow 0.2s;
                 pointer-events: none;
             }
@@ -807,7 +808,7 @@ nav {
                 flex-shrink: 0;
                 /* --- FALLBACK FIRST --- */
                 background: var(--fallback-bg);
-                border: 1px solid var(--glass-border);
+                border: 2px solid var(--glass-border);
             }
 
             .social-sidebar-toggle:hover {
@@ -965,7 +966,7 @@ nav {
     box-shadow: var(--shadow-glass);
     /* --- FALLBACK FIRST --- */
     background: var(--fallback-bg);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
 }
 
 .tippy-arrow {
@@ -1242,7 +1243,7 @@ nav {
         background: var(--glass-bg);
         -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
+        border: 2px solid var(--glass-border);
     }
 
     .content:hover {
@@ -1362,7 +1363,7 @@ nav {
         background: var(--glass-bg);
         -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(var(--blur-amount));
-        border: 1px solid var(--glass-border);
+        border: 2px solid var(--glass-border);
         color: var(--primary-text);
         transform: none!important;
     }
