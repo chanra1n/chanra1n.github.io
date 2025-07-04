@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore projects, music, and much more. View a web development showcase, game development projects, and music compositions by Chan Rain.">
+    <meta name="keywords" content="chan rain, developer, musician, artist, portfolio, web development, game development, music composition, javascript, chan, rain, chanra1n, gaming, developer">
     <title>Chan Rain | Dev, Musician, Artist ✨</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,34 +15,62 @@
     <script src="https://unpkg.com/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <meta property="og:title" content="Chan Rain | Dev, Musician, Artist ✨">
+    <meta property="og:description" content="Explore projects, music, and much more.">
+    <meta property="og:image" content="https://chanrain.com/assets/images/pfp.png">
+    <meta property="og:url" content="https://chanrain.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Chan Rain",
+  "url": "https://chanrain.com",
+  "sameAs": [
+    "https://instagram.com/_chanrain",
+    "https://github.com/chanra1n",
+    "https://youtube.com/@chanra1n",
+    "https://discordapp.com/users/750845810396364900",
+    "https://steamcommunity.com/id/chanrain",
+    "https://www.tumblr.com/chanrain"
+  ],
+  "jobTitle": "Developer, Musician, Artist",
+  "image": "https://chanrain.com/assets/images/pfp.png",
+  "description": "Chan Rain is a developer, musician, and artist. Explore projects, music, and more. Portfolio of web development, game development, and music composition."
+}
+    </script>
+
+
+
 </head>
 
 <body>
     <div class="floating-particles" id="particles"></div>
 
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-content">
-            <a href="#" class="logo">CHAN RAIN</a>
-            <button class="nav-toggle" onclick="toggleMobileMenu()">
-                <i class="ri-menu-line"></i>
+            <a href="#" class="logo" aria-label="Chan Rain Home">CHAN RAIN</a>
+            <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-controls="navMenu" aria-expanded="false">
+                <i class="ri-menu-line" aria-hidden="true"></i>
             </button>
-            <nav>
+            <nav role="navigation" aria-label="Main navigation">
                 <ul class="nav-menu" id="navMenu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="switchTab('projects', event)">
-                            <i class="ri-sparkling-2-fill"></i>
+                        <a href="#" class="nav-link" onclick="switchTab('projects', event)" aria-current="page">
+                            <i class="ri-sparkling-2-fill" aria-hidden="true"></i>
                             <span class="nav-text">Showcase</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" onclick="switchTab('about', event)">
-                            <i class="ri-information-fill"></i>
+                            <i class="ri-information-fill" aria-hidden="true"></i>
                             <span class="nav-text">About</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" onclick="switchTab('contact', event)">
-                            <i class="ri-chat-1-fill"></i>
+                            <i class="ri-chat-1-fill" aria-hidden="true"></i>
                             <span class="nav-text">Contact</span>
                         </a>
                     </li>
@@ -50,44 +80,38 @@
     </header>
 
     <div class="main-layout">
-        <aside class="social-sidebar" id="socialSidebar">
-            <a href="#" class="social-sidebar-toggle" id="socialSidebarToggle" aria-label="Toggle social links">
-                <i class="ri-share-line"></i>
+        <aside class="social-sidebar" id="socialSidebar" aria-label="Social links sidebar">
+            <a href="#" class="social-sidebar-toggle" id="socialSidebarToggle" aria-label="Toggle social links" tabindex="0">
+                <i class="ri-share-line" aria-hidden="true"></i>
             </a>
             <div class="social-links-container">
-                <a href="https://instagram.com/_chanrain" target="_blank" class="social-link social-link-item"
-                    data-tippy-content="@_chanrain">
-                    <i class="ri-instagram-fill"></i>
+                <a href="https://instagram.com/_chanrain" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@_chanrain" aria-label="Instagram: @_chanrain">
+                    <i class="ri-instagram-fill" aria-hidden="true"></i>
                 </a>
-                <a href="https://github.com/chanra1n" target="_blank" class="social-link social-link-item" data-tippy-content="@chanra1n">
-                    <i class="ri-github-fill"></i>
+                <a href="https://github.com/chanra1n" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@chanra1n" aria-label="GitHub: @chanra1n">
+                    <i class="ri-github-fill" aria-hidden="true"></i>
                 </a>
-                <a href="https://discordapp.com/users/750845810396364900" target="_blank" class="social-link social-link-item"
-                    data-tippy-content="@chanrain">
-                    <i class="ri-discord-fill"></i>
+                <a href="https://discordapp.com/users/750845810396364900" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@chanrain" aria-label="Discord: @chanrain">
+                    <i class="ri-discord-fill" aria-hidden="true"></i>
                 </a>
-                <a href="https://steamcommunity.com/id/chanrain" target="_blank" class="social-link social-link-item"
-                    data-tippy-content="@chanrain">
-                    <i class="ri-steam-fill"></i>
+                <a href="https://steamcommunity.com/id/chanrain" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@chanrain" aria-label="Steam: @chanrain">
+                    <i class="ri-steam-fill" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.tumblr.com/chanrain" target="_blank" class="social-link social-link-item"
-                    data-tippy-content="@chanrain">
-                    <i class="ri-tumblr-fill"></i>
+                <a href="https://www.tumblr.com/chanrain" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@chanrain" aria-label="Tumblr: @chanrain">
+                    <i class="ri-tumblr-fill" aria-hidden="true"></i>
                 </a>
-                <a href="https://youtube.com/@chanra1n" target="_blank" class="social-link social-link-item" data-tippy-content="@chanra1n">
-                    <i class="ri-youtube-fill"></i>
+                <a href="https://youtube.com/@chanra1n" target="_blank" rel="noopener" class="social-link social-link-item" data-tippy-content="@chanra1n" aria-label="YouTube: @chanra1n">
+                    <i class="ri-youtube-fill" aria-hidden="true"></i>
                 </a>
             </div>
         </aside>
 
         <main class="content">
             <!-- Projects Tab -->
-            <div id="projects" class="page-content active">
-                <h1 class="page-title">
-                <i class="ri-sparkling-2-fill"></i>
-                <span>
-                Showcase
-                </span>
+            <div id="projects" class="page-content active" role="region" aria-labelledby="projects-title">
+                <h1 class="page-title" id="projects-title">
+                <i class="ri-sparkling-2-fill" aria-hidden="true"></i>
+                <span>Project Showcase</span>
             </h1>
                 <div class="project-grid">
                     
@@ -97,7 +121,7 @@
                             <p>RISK, REWARD, REPEAT - This is a game I've been working on for the past year. Web dev
                                 meets game dev, on steroids. Enjoy.</p>
                         </div>
-                        <img src="assets/images/sct.png" alt="Scam Center Tycoon" class="project-image">
+                        <img src="assets/images/sct.png" alt="Scam Center Tycoon game by Chan Rain" class="project-image">
                             <div class="project-buttons">
                                 <a href="https://scamcentertycoon.com" target="_blank" class="btn">
                                     <i class="ri-gamepad-fill"></i>
@@ -113,7 +137,7 @@
                                 An interactive chatbot connecting Cal Poly Humboldt students with internship opportunities, in collaboration with the Sponsored Programs Foundation on campus.
                             </p>
                         </div>
-                        <img src="assets/images/spf_xp.png" alt="Chan Rain Website" class="project-image">
+                        <img src="assets/images/spf_xp.png" alt="Project LearningXP by Chan Rain" class="project-image">
                             <div class="project-buttons">
                                 <a href="https://chanrain.com/SPF-Internship-Chatbot-Demo/" target="_blank" class="btn">
                                     <i class="ri-chat-1-fill"></i>
@@ -129,7 +153,7 @@
                             A fun party game I put together on a whim. Invite your friends - how many mundane activities can you gwamble on?
                             </p> 
                         </div>
-                        <img src="assets/images/gwamble.png" alt="Chan Rain Website" class="project-image">
+                        <img src="assets/images/gwamble.png" alt="Project Gwamble by Chan Rain" class="project-image">
                             <div class="project-buttons">
                                 <a href="https://chanrain.com/gwamble-test/" target="_blank" class="btn" style = "opacity: 50%;pointer-events: none;">
                                     <i class="ri-dice-fill"></i>
@@ -144,19 +168,19 @@
                             <p>Available on most platforms. Usually, when I compose music for games, I release the
                                 soundtrack as an album, along with any bonus tracks that didn't make the cut.</p>
                         </div>
-                        <img src="assets/images/pfp.png" alt="Chan Rain Music" class="project-image">
+                        <img src="assets/images/pfp.png" alt="Chan Rain Music and Portfolio" class="project-image">
                                                 <div class="music-platform-icons">
-                                <a href="https://open.spotify.com/artist/2ilmWHp65ySfupUOPyKRrt" target="_blank" class="music-icon spotify" title="Spotify">
-                                    <i class="ri-spotify-fill"></i>
+                                <a href="https://open.spotify.com/artist/2ilmWHp65ySfupUOPyKRrt" target="_blank" rel="noopener" class="music-icon spotify" title="Spotify" aria-label="Spotify: Chan Rain">
+                                    <i class="ri-spotify-fill" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://music.apple.com/us/artist/chan-rain/1725368167" target="_blank" class="music-icon apple" title="Apple Music">
-                                    <i class="ri-apple-fill"></i>
+                                <a href="https://music.apple.com/us/artist/chan-rain/1725368167" target="_blank" rel="noopener" class="music-icon apple" title="Apple Music" aria-label="Apple Music: Chan Rain">
+                                    <i class="ri-apple-fill" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://music.amazon.com/artists/B0CS4V5HJB/chan-rain" target="_blank" class="music-icon amazon" title="Amazon Music">
-                                    <i class="ri-amazon-fill"></i>
+                                <a href="https://music.amazon.com/artists/B0CS4V5HJB/chan-rain" target="_blank" rel="noopener" class="music-icon amazon" title="Amazon Music" aria-label="Amazon Music: Chan Rain">
+                                    <i class="ri-amazon-fill" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://music.youtube.com/channel/UCaywisLAnj_EkEi7QH-Jk-Q" target="_blank" class="music-icon youtube" title="YouTube Music">
-                                    <i class="ri-youtube-fill"></i>
+                                <a href="https://music.youtube.com/channel/UCaywisLAnj_EkEi7QH-Jk-Q" target="_blank" rel="noopener" class="music-icon youtube" title="YouTube Music" aria-label="YouTube Music: Chan Rain">
+                                    <i class="ri-youtube-fill" aria-hidden="true"></i>
                                 </a>
                             </div>
                     </div>
@@ -164,47 +188,29 @@
             </div>
 
             <!-- About Tab -->
-            <div id="about" class="page-content">
-                <h1 class="page-title">
-                    <i class="ri-information-fill"></i>
-                    <span>About Me</span>
+            <div id="about" class="page-content" role="region" aria-labelledby="about-title">
+                <h1 class="page-title" id="about-title">
+                    <i class="ri-information-fill" aria-hidden="true"></i>
+                    <span>About</span>
                 </h1>
                 <div class="info-section">
                     <div class="info-text">
-                        <p>
-                            Extensive experience with web-based technologies and frameworks (both frontend and backend),
-                            and plenty of personal projects to share.
-                            I've been doing this for a while, but I'm always looking for new things to learn.
-                        </p>
-                        <p>
-                            I'll also occasionally do music for games I'm working on - with other teams, or on my own,
-                            just for fun. If you're interested in collaborating, feel free to reach out.
-                        </p>
-                        <p>
-                            Hoping to make a career out of any one thing you see on this website... or all of them. I'm
-                            not picky! Thanks for stopping by.
-                        </p>
+                        <p>Hey, I'm Chan. I build web apps, make games, and sometimes write music for projects (or for fun). I love learning new things and experimenting with different ideas — most of what you see here started as a side project, or as a random curiosity.</p>
+                        <p>If you want to collaborate, chat, or just share ideas, feel free to reach out. Thanks for stopping by!</p>
                     </div>
                 </div>
             </div>
 
             <!-- Contact Tab -->
-            <div id="contact" class="page-content">
-                <h1 class="page-title">
-                    <i class="ri-chat-1-fill"></i>
-                    <span>Contact Me</span>
+            <div id="contact" class="page-content" role="region" aria-labelledby="contact-title">
+                <h1 class="page-title" id="contact-title">
+                    <i class="ri-chat-1-fill" aria-hidden="true"></i>
+                    <span>Contact</span>
                 </h1>
                 <div class="info-section">
                     <div class="info-text">
-                        <p>
-                            If you're interested in collaborating on a project, or just want to chat, feel free to reach
-                            out to me on any of the platforms listed below.
-                        </p>
-                        <p>
-                            I'm always open to new opportunities and interesting conversations. Whether it's web
-                            development, game development, music composition, or just a friendly chat about technology
-                            and creativity.
-                        </p>
+                        <p>If you're interested in collaborating on a project, or have an exciting opportunity to share, feel free to reach out!</p>
+                        <p>I'm always open to new opportunities and interesting conversations. Whether it's web development, game development, music composition, or just a friendly chat about stuff I'm into.</p>
                     </div>
                 </div>
             </div>
